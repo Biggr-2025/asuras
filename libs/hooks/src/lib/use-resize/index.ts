@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 
 export const useResize = () => {
-  const [isDesktop, setDesktop] = useState(true);
+	const [isDesktop, setDesktop] = useState(true);
 
-  const handleResize = () => {
-    setDesktop(window.innerWidth > 1024);
-  };
+	const handleResize = () => {
+		setDesktop(window.innerWidth > 1024);
+	};
 
-  useEffect(() => {
-    handleResize();
+	useEffect(() => {
+		handleResize();
 
-    window.addEventListener('resize', handleResize);
+		window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 
-  return {
-    isDesktop,
-  };
+	return {
+		isDesktop,
+	};
 };

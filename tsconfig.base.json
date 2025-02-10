@@ -1,26 +1,26 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2020", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@grahas/hooks": ["libs/hooks/src/index.ts"],
-      "@grahas/hooks/server": ["libs/hooks/src/server.ts"],
-      "@grahas/ui": ["libs/ui/src/index.ts"],
-      "@grahas/ui/server": ["libs/ui/src/server.ts"],
-      "@grahas/utils": ["libs/utils/src/index.ts"]
-    }
-  },
-  "exclude": ["node_modules", "tmp"]
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": ["es2020", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@asuras/hooks": ["libs/hooks/src/index.ts"],
+			"@asuras/hooks/server": ["libs/hooks/src/server.ts"],
+			"@asuras/ui": ["libs/ui/src/index.ts"],
+			"@asuras/ui/server": ["libs/ui/src/server.ts"],
+			"@asuras/utils": ["libs/utils/src/index.ts"]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
 }
