@@ -60,16 +60,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			<Comp
 				className={cn(
 					buttonVariants({ variant, size, className }),
-					loading && 'opacity-60 cursor-not-allowed'
+					loading && 'cursor-not-allowed opacity-60'
 				)}
 				ref={ref}
 				disabled={loading || props.disabled}
 				{...props}
 			>
 				{loading ? (
-					<div className="flex gap-8 items-center">
+					<div className="flex items-center gap-8">
 						<Loader2 className="animate-spin" />
-						<span className="font-medium text-14">{loadingText}</span>
+						<span className="text-14 font-medium">{loadingText}</span>
 					</div>
 				) : (
 					props.children
