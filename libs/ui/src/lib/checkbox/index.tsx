@@ -13,7 +13,7 @@ const Checkbox = React.forwardRef<
 	<CheckboxPrimitive.Root
 		ref={ref}
 		className={cn(
-			'h-18 w-18 border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer shrink-0 rounded-sm border shadow focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50',
+			'peer h-18 w-18 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
 			className
 		)}
 		{...props}
@@ -21,7 +21,7 @@ const Checkbox = React.forwardRef<
 		<CheckboxPrimitive.Indicator
 			className={cn('flex items-center justify-center text-current')}
 		>
-			<Check className="size-12" />
+			<Check className="h-12 w-12" />
 		</CheckboxPrimitive.Indicator>
 	</CheckboxPrimitive.Root>
 ));

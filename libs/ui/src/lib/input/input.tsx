@@ -1,4 +1,4 @@
-import { forwardRef, type InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes } from 'react';
 
 import { cn } from '../../utils';
 
@@ -10,11 +10,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 			<input
 				type={type}
 				className={cn(
-					'rounded-12 border-grey-light text-14 text-black-2 shadow-1 shadow-black-1 ring-offset-background focus-visible:border-primary flex h-48 w-full border bg-white px-14 py-12 transition-shadow focus-visible:border-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+					'flex h-48 w-full rounded-12 border border-grey-light bg-white px-14 py-12 text-14 text-black-2 shadow-1 shadow-black-1 ring-offset-background transition-shadow focus-visible:border-[2px] focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 					type === 'search' &&
 						'[&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none [&::-webkit-search-results-button]:appearance-none [&::-webkit-search-results-decoration]:appearance-none',
 					type === 'file' &&
-						'text-muted-foreground/70 file:border-input file:text-12 file:text-foreground p-0 pr-3 file:me-12 file:h-full file:border-0 file:border-r file:border-solid file:bg-transparent file:px-12 file:font-medium file:not-italic',
+						'p-0 pr-3 text-muted-foreground/70 file:me-12 file:h-full file:border-0 file:border-r file:border-solid file:border-input file:bg-transparent file:px-12 file:text-12 file:font-medium file:not-italic file:text-foreground',
 					className
 				)}
 				ref={ref}

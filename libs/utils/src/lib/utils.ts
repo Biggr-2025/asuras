@@ -1,12 +1,23 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+export const capitalize = (value: string) => {
+	return value
+		.toLowerCase()
+		.split(' ')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ');
+};
 
-export const phoneValidator = /^[6-9]\d{9}$/;
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
+}
 
-export const otpValidator = /^[0-9]{1,6}$/;
+export const slideDown = {
+	initial: { y: -50, opacity: 0 },
+	animate: { y: 0, opacity: 1 },
+	exit: { y: -50, opacity: 0 },
+	transition: { type: 'tween', ease: 'easeInOut', duration: 0.3 },
+};
 
-export const panValidator = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-
-export const gstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
+export const rupee = '\u20B9';
