@@ -1,8 +1,8 @@
 'use client';
 
-import { type ReactNode } from 'react';
+import { ReactNode } from 'react';
+import { cn } from '@asuras/utils';
 
-import { cn } from '../../utils';
 import { Command, CommandInput } from '../command';
 import { Popover, PopoverAnchor, PopoverContent } from '../popover';
 
@@ -27,6 +27,10 @@ export function AutoSearch({
 	setOpen,
 	inputClasses,
 }: IAutoSearchProps) {
+	const reset = () => {
+		onSearchValueChange('');
+	};
+
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<Command className={cn('max-w-[320px]', className)}>

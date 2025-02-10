@@ -95,12 +95,12 @@ export default function StoreRegistration({ data }: { data: IStoreTypes.IStoreRe
 
 	return (
 		<div>
-			<Table className="rounded-12 shadow-card1 relative m-16 bg-white">
+			<Table className="rounde-12 relative m-16 bg-white shadow-card1">
 				<TableHeader>
 					{table?.getHeaderGroups().map((headerGroup) => (
 						<TableRow key={headerGroup.id}>
 							{headerGroup.headers.map((header) => (
-								<TableHead className="text-14 p-16" key={header.id}>
+								<TableHead className="p-16 text-14" key={header.id}>
 									{header.isPlaceholder
 										? null
 										: flexRender(

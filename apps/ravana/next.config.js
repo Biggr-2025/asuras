@@ -11,6 +11,12 @@ const nextConfig = {
 		// See: https://github.com/gregberge/svgr
 		svgr: false,
 	},
+	images: {
+		domains: [
+			'biggr-assets.s3.ap-south-1.amazonaws.com',
+			'biggr-test-docs.s3.ap-south-1.amazonaws.com',
+		],
+	},
 };
 
 const plugins = [

@@ -1,5 +1,3 @@
-// Use this file to export React client components (e.g. those with 'use client' directive) or other non-server utilities
-
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './lib/accordian';
 export {
 	AlertDialog,
@@ -113,6 +111,15 @@ export {
 export { PaginationWithLinks } from './lib/pagination-with-links';
 export { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from './lib/popover';
 export {
+	SearchSelectContent,
+	SearchSelectInput,
+	SearchSelectLabel,
+	SearchSelectList,
+	SearchSelectOption,
+	SearchSelectTrigger,
+} from './lib/search-select-list';
+export { useSearchSelectTrigger } from './lib/search-select-list/context';
+export {
 	Select,
 	SelectContent,
 	SelectGroup,
@@ -163,16 +170,17 @@ export {
 } from './lib/sidebar';
 export * from './lib/skeleton';
 export { Spinner } from './lib/spinner';
-// export {
-// 	Table,
-// 	TableBody,
-// 	TableCaption,
-// 	TableCell,
-// 	TableFooter,
-// 	TableHead,
-// 	TableHeader,
-// 	TableRow,
-// } from './lib/table';
+export { Switch } from './lib/switch';
+export {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableFooter,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from './lib/table';
 export { Tabs, TabsContent, TabsList, TabsTrigger } from './lib/tabs';
 export * from './lib/text-area';
 export { Toaster } from './lib/toast';

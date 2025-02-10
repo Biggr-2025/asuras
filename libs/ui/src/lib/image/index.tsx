@@ -1,9 +1,6 @@
-import { HTMLAttributes } from 'react';
 import Image from 'next/image';
 
-import { cn } from '../../utils';
-
-export interface ImagePlaceholderProps extends HTMLAttributes<HTMLElement> {
+export interface ImagePlaceholderProps extends React.HTMLAttributes<HTMLElement> {
 	alt?: string;
 	src: string;
 	containerClasses?: string;
@@ -22,7 +19,7 @@ export const toBase64 = (str: string) =>
 
 function ImagePlaceholder(props: ImagePlaceholderProps) {
 	const {
-		alt = 'pemilyy',
+		alt = 'biggr',
 		src,
 		containerClasses = '',
 		imageClasses,
@@ -32,7 +29,7 @@ function ImagePlaceholder(props: ImagePlaceholderProps) {
 	} = props;
 
 	return (
-		<figure className={cn('relative', containerClasses)} {...rest}>
+		<figure className={`relative ${containerClasses}`} {...rest}>
 			<Image
 				src={src}
 				alt={alt}
