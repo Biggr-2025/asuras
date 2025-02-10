@@ -23,7 +23,6 @@
 		"**/*.tsx",
 		"**/*.js",
 		"**/*.jsx",
-
 		"../../apps/ravana/.next/types/**/*.ts",
 		"../../dist/apps/ravana/.next/types/**/*.ts",
 
