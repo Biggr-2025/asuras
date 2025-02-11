@@ -24,19 +24,13 @@ export default [
 	...nx.configs['flat/typescript'],
 	...nx.configs['flat/javascript'],
 	{
-		ignores: [
-			'dist/*',
-			'**/.cache',
-			'**/public',
-			'**/node_modules',
-			'**/*.esm.js',
-		],
+		ignores: ['dist/*', '**/.cache', '**/public', '**/node_modules', '**/*.esm.js'],
 	},
 	...compat.extends(
 		'prettier',
 		'eslint:recommended',
 		'plugin:prettier/recommended',
-		'plugin:tailwindcss/recommended',
+		'plugin:tailwindcss/recommended'
 	),
 	{
 		plugins: {
@@ -117,12 +111,7 @@ export default [
 							'^@?\\w',
 						],
 						['^components(/.*|$)'],
-						[
-							'^lib(/.*|$)',
-							'^hooks(/.*|$)',
-							'^ui(/.*|$)',
-							'^core(/.*|$)',
-						],
+						['^lib(/.*|$)', '^hooks(/.*|$)', '^ui(/.*|$)', '^core(/.*|$)'],
 						['^\\.'],
 					],
 				},
@@ -161,16 +150,10 @@ export default [
 		},
 	},
 	{
-		files: [
-			'**/*.ts',
-			'**/*.tsx',
-			'**/*.js',
-			'**/*.jsx',
-			'**/*.cjs',
-			'**/*.mjs',
-		],
+		files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
 		rules: {
 			'no-unused-vars': 'off',
+				'no-undef': 'off',
 		},
 	},
 ];
