@@ -1,6 +1,5 @@
 export { EditStoreProduct } from './add-edit-store-product';
 export { AppMobile } from './app-mobile';
-export { AddCatalougeProduct } from './catalouge-form';
 export { Header } from './header';
 export {
 	ProductListing,
