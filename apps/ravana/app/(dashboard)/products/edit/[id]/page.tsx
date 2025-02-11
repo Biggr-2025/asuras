@@ -6,13 +6,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { EditProductProvider } from './context/edit-product';
 
-const AddCatalougeProduct = dynamic(
-	() => import('../../../../../core/ui').then((mod) => mod.AddCatalougeProduct),
-	{
-		loading: () => <Spinner />,
-		ssr: false,
-	}
-);
+const ProductForm = dynamic(() => import('../../_ui/form').then((mod) => mod.ProductForm), {
+	loading: () => <Spinner />,
+	ssr: false,
+});
 
 const AddEditAttributes = dynamic(() => import('./ui/attributes'), {
 	loading: () => <Spinner />,
@@ -54,7 +51,7 @@ export default function Page() {
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent className="mt-0" value="product">
-					<AddCatalougeProduct type="EDIT" />
+					<ProductForm type="EDIT" />
 				</TabsContent>
 				<TabsContent className="mt-0" value="images">
 					<ImagesContainer />

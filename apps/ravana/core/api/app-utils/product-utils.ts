@@ -35,17 +35,27 @@ const getProductUtilsList = async ({
 	return data;
 };
 
-export function useGetProductUtilsList(
-	apiKey: string,
-	type: string,
-	searchTerm: string,
-	active: 0 | 1,
-	page: number,
-	limit: number,
-	count: 0 | 1,
-	department?: string,
-	category?: string
-) {
+export function useGetProductUtilsList({
+	apiKey,
+	type,
+	searchTerm,
+	active,
+	page,
+	limit,
+	count,
+	department,
+	category,
+}: {
+	apiKey: string;
+	type: string;
+	searchTerm: string;
+	active: 0 | 1;
+	page: number;
+	limit: number;
+	count: 0 | 1;
+	department?: string;
+	category?: string;
+}) {
 	return useQuery({
 		queryKey: [apiKey, type, searchTerm, active, page, limit, count, department, category],
 		queryFn: getProductUtilsList,

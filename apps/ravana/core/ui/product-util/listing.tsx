@@ -35,15 +35,15 @@ export function ProductUtilList({
 		pageSize: 15,
 	});
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-	const { data, isPending, refetch } = useGetProductUtilsList(
-		'productUtil/list',
+	const { data, isPending, refetch } = useGetProductUtilsList({
+		apiKey: 'productUtil/list',
 		type,
-		search,
-		0,
-		pagination.pageIndex,
-		pagination.pageSize,
-		1
-	);
+		searchTerm: search,
+		active: 0,
+		page: pagination.pageIndex,
+		limit: pagination.pageSize,
+		count: 1,
+	});
 
 	const handleSearchChange = useCallback(
 		(value: string) => {
@@ -105,7 +105,7 @@ export const ProductUtilListingHeader = ({ className }: IProductUtilListHeaderPr
 	};
 
 	return (
-		<div className="shadow-card1 rounded-8 mb-12 bg-white">
+		<div className="rounded-8 shadow-card1 mb-12 bg-white">
 			<div className={cn('flex items-center justify-between p-12', className)}>
 				<div className="flex-1">
 					<div className="relative flex w-[320px] items-center border-b px-12">
