@@ -153,7 +153,7 @@ export default [
 		files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
 		rules: {
 			'no-unused-vars': 'off',
-				'no-undef': 'off',
+			'no-undef': 'off',
 		},
 	},
 ];

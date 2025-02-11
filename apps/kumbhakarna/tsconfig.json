@@ -15,8 +15,7 @@
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"incremental": true,
-		"plugins": [{ "name": "next" }],
-		"types": ["node", "./types"]
+		"plugins": [{ "name": "next" }]
 	},
 	"include": [
 		"**/*.ts",

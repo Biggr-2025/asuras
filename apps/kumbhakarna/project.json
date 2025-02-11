@@ -26,7 +26,7 @@
 			"options": {
 				"buildTarget": "kumbhakarna:build",
 				"dev": true,
-				"port": 2003
+				"port": 2004
 			},
 			"configurations": {
 				"development": {
