@@ -120,16 +120,17 @@ declare namespace ICatalougeTypes {
 		_id: string;
 		name: string;
 		department: string;
-		image: {
-			smallUrl: string | null;
-			mediumUrl: string | null;
-			largeUrl: string | null;
-			iconUrl: string | null;
-			active: boolean;
-			_id: string;
-			createdAt: string;
-			updatedAt: string;
-		};
+		image: ICategoryImage;
 		active: boolean;
+	}
+	interface ICategoryImage {
+		smallUrl: string | null;
+		mediumUrl: string | null;
+		largeUrl: string | null;
+		iconUrl: string | null;
+		active: boolean;
+		_id: string;
+		createdAt: string;
+		updatedAt: string;
 	}
 }

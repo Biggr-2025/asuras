@@ -1,16 +1,24 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { ImagePlaceholder } from '@asuras/ui';
 import { cn } from '@asuras/utils';
 import { useParams } from 'next/navigation';
 
 import { createFormDataForImage } from '../../../../../../../core/helpers';
 import { useUpdateUtilType } from '../_api/update-image';
 
-export default function Item({ item }: { item: { label: string; name: string } }) {
+export default function Item({
+	item,
+	defaultImage,
+	refetch,
+}: {
+	item: { label: string; name: string };
+	defaultImage: string | boolean | null;
+	refetch: () => void;
+}) {
 	const params = useParams();
-	const [files, setFiles] = useState<ICommonTypes.IFileWithPreview[]>([]);
 	const { mutateAsync: updateUtilType } = useUpdateUtilType(
 		decodeURIComponent(params?.name as string)
 	);
@@ -24,15 +32,9 @@ export default function Item({ item }: { item: { label: string; name: string } }
 				imageType: item?.name,
 			});
 			const response = await updateUtilType(formData);
-			console.log(response);
-
-			// setFiles(
-			//     acceptedFiles.map((file) =>
-			//         Object.assign(file, {
-			//             preview: URL.createObjectURL(file),
-			//         })
-			//     )
-			// );
+			if (response.status === 'SUCCESS') {
+				refetch();
+			}
 		});
 	}, []);
 
@@ -57,7 +59,15 @@ export default function Item({ item }: { item: { label: string; name: string } }
 	return (
 		<div {...getRootProps()} className={cn(classess)}>
 			<input {...getInputProps()} />
-			<div className="shadow-card1 rounded-8 size-full cursor-pointer bg-white"></div>
+			<div className="rounded-8 shadow-card1 size-full cursor-pointer bg-white">
+				{defaultImage && (
+					<ImagePlaceholder
+						src={`${process.env.NEXT_PUBLIC_IMAGE_PATH}/${defaultImage}`}
+						containerClasses="size-full rounded-8 cursor-pointer"
+						imageClasses="object-cover rounded-8"
+					/>
+				)}
+			</div>
 			<p className="mt-6 block w-full text-center">{item.label}</p>
 		</div>
 	);
