@@ -80,7 +80,7 @@ export default function StoreUpload({
 			<AccordionContent>
 				<div className="grid grid-cols-2 gap-24">
 					{data?.data?.docUrl && (
-						<div className="border-grey-divider rounded-12 col-span-1 border">
+						<div className="rounded-12 border-grey-divider col-span-1 border">
 							{docPdfType ? (
 								<Link
 									className="flex h-full items-center justify-center"
@@ -102,7 +102,7 @@ export default function StoreUpload({
 							)}
 						</div>
 					)}
-					<div className="border-grey-divider rounded-12 col-span-1 flex h-[300px] items-center justify-center  border">
+					<div className="rounded-12 border-grey-divider col-span-1 flex h-[300px] items-center justify-center  border">
 						<div
 							className="flex size-full cursor-pointer flex-col items-center justify-center"
 							{...getRootProps()}

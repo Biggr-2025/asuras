@@ -5,9 +5,21 @@ import { HttpService } from '../../services';
 const getProductUtilsList = async ({
 	queryKey,
 }: QueryFunctionContext<
-	[string, string, string, 0 | 1, number, number, 0 | 1, string | undefined, string | undefined]
+	[
+		string,
+		string,
+		string,
+		0 | 1,
+		number,
+		number,
+		0 | 1,
+		string | undefined,
+		string | undefined,
+		string | undefined,
+	]
 >) => {
-	const [_key, type, searchTerm, active, page, limit, count, department, category] = queryKey;
+	const [_key, type, searchTerm, active, page, limit, count, department, category, name] =
+		queryKey;
 
 	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/list?utilType=${type}&page=${page}&limit=${limit}`;
 
@@ -25,6 +37,9 @@ const getProductUtilsList = async ({
 	}
 	if (category) {
 		url += `&category=${category}`;
+	}
+	if (name) {
+		url += `&name=${name}`;
 	}
 
 	const { data } =
@@ -45,6 +60,7 @@ export function useGetProductUtilsList({
 	count,
 	department,
 	category,
+	name,
 }: {
 	apiKey: string;
 	type: string;
@@ -55,9 +71,21 @@ export function useGetProductUtilsList({
 	count: 0 | 1;
 	department?: string;
 	category?: string;
+	name?: string;
 }) {
 	return useQuery({
-		queryKey: [apiKey, type, searchTerm, active, page, limit, count, department, category],
+		queryKey: [
+			apiKey,
+			type,
+			searchTerm,
+			active,
+			page,
+			limit,
+			count,
+			department,
+			category,
+			name,
+		],
 		queryFn: getProductUtilsList,
 		placeholderData: keepPreviousData,
 	});

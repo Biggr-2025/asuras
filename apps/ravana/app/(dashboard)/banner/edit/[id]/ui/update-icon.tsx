@@ -29,7 +29,7 @@ export default function UpdateIcon() {
 	});
 
 	return (
-		<div className="shadow-card1 rounded-8 col-span-1 bg-white p-16">
+		<div className="rounded-8 shadow-card1 col-span-1 bg-white p-16">
 			<div
 				className="flex size-full cursor-pointer items-center justify-center"
 				{...getRootProps()}
