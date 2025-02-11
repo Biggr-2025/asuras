@@ -95,7 +95,7 @@ export default function StoreRegistration({ data }: { data: IStoreTypes.IStoreRe
 
 	return (
 		<div>
-			<Table className="shadow-card1 rounde-12 relative m-16 bg-white">
+			<Table className="rounde-12 shadow-card1 relative m-16 bg-white">
 				<TableHeader>
 					{table?.getHeaderGroups().map((headerGroup) => (
 						<TableRow key={headerGroup.id}>
@@ -104,9 +104,9 @@ export default function StoreRegistration({ data }: { data: IStoreTypes.IStoreRe
 									{header.isPlaceholder
 										? null
 										: flexRender(
-											header.column.columnDef.header,
-											header.getContext()
-										)}
+												header.column.columnDef.header,
+												header.getContext()
+											)}
 								</TableHead>
 							))}
 						</TableRow>
