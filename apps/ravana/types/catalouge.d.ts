@@ -121,7 +121,8 @@ declare namespace ICatalougeTypes {
 	interface ICategory {
 		_id: string;
 		name: string;
-		department: string;
+		department?: string;
+		category?: string;
 		image: ICategoryImage;
 		active: boolean;
 	}

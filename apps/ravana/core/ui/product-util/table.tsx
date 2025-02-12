@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -84,7 +85,7 @@ export function ProductUtilsTable({ columns }: { columns: ColumnDef<any>[] }) {
 
 	return (
 		<>
-			<div className="shadow-card1 rounded-8 bg-white">
+			<div className="rounded-8 shadow-card1 bg-white px-16">
 				<Table>
 					<TableHeader>
 						{table?.getHeaderGroups().map((headerGroup) => (
@@ -94,9 +95,9 @@ export function ProductUtilsTable({ columns }: { columns: ColumnDef<any>[] }) {
 										{header.isPlaceholder
 											? null
 											: flexRender(
-												header.column.columnDef.header,
-												header.getContext()
-											)}
+													header.column.columnDef.header,
+													header.getContext()
+												)}
 									</TableHead>
 								))}
 							</TableRow>
