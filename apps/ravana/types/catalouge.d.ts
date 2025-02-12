@@ -56,6 +56,7 @@ declare namespace ICatalougeTypes {
 		title: string;
 		description: string;
 		type: string;
+		rank: number;
 	}
 	interface IBannerDetails {
 		title: string;
@@ -70,6 +71,7 @@ declare namespace ICatalougeTypes {
 		bgColorCode: null | string;
 		isImage: boolean;
 		iconUrl: string | null;
+		rank: number;
 	}
 	interface IBannerImage {
 		title: string;

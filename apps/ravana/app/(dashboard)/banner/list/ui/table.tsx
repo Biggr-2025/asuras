@@ -36,6 +36,11 @@ export default function ListingTable({
 	const columns: ColumnDef<ICatalougeTypes.IBanner>[] = useMemo(
 		() => [
 			{
+				accessorKey: 'rank',
+				header: 'Proiority',
+				cell: ({ row }) => <div>{row.getValue('rank')}</div>,
+			},
+			{
 				accessorKey: 'title',
 				header: 'Title',
 				cell: ({ row }) => {
@@ -93,9 +98,9 @@ export default function ListingTable({
 									{header.isPlaceholder
 										? null
 										: flexRender(
-											header.column.columnDef.header,
-											header.getContext()
-										)}
+												header.column.columnDef.header,
+												header.getContext()
+											)}
 								</TableHead>
 							))}
 						</TableRow>
