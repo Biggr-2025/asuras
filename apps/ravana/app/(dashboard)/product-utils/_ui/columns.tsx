@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Routes } from '../../../../core/primitives';
 import { ProductUtilsTable } from '../../../../core/ui/product-util/table';
 
-export default function ColumnsListing() {
+export default function ColumnsListing({ type }: { type: string }) {
 	const columns: ColumnDef<ICatalougeTypes.ICategory>[] = useMemo(
 		() => [
 			{
@@ -16,7 +16,7 @@ export default function ColumnsListing() {
 					return (
 						<Link
 							className="hover:text-primary line-clamp-2 w-[340px] text-left hover:underline"
-							href={`${Routes.EditUtils}/DEPARTMENT/${row.original.name}`}
+							href={`${Routes.EditUtils}/${type}/${row.original.name}`}
 						>
 							{row.original.name}
 						</Link>
