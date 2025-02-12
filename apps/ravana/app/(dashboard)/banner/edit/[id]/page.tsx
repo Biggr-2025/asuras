@@ -12,7 +12,7 @@ const UpdateIcon = dynamic(() => import('./ui/update-icon'), {
 	loading: () => <Spinner />,
 });
 
-const AddEditBanner = dynamic(() => import('./ui/edit-banner').then((mod) => mod.AddEditBanner), {
+const EditBanner = dynamic(() => import('./ui/edit-banner').then((mod) => mod.EditBanner), {
 	loading: () => <Spinner />,
 	ssr: false,
 });
@@ -39,7 +39,7 @@ export default function Page() {
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent className="mt-0 grid grid-cols-3 gap-12" value="details">
-					<AddEditBanner type="EDIT" />
+					<EditBanner />
 					<UpdateIcon />
 				</TabsContent>
 				<TabsContent className="mt-0" value="images">

@@ -37,7 +37,7 @@ export default function ListingTable({
 		() => [
 			{
 				accessorKey: 'rank',
-				header: 'Proiority',
+				header: 'Rank',
 				cell: ({ row }) => <div>{row.getValue('rank')}</div>,
 			},
 			{

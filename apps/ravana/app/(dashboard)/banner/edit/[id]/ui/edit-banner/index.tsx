@@ -3,10 +3,10 @@
 import { Button, Form } from '@asuras/ui';
 
 import { fields } from './fields';
-import { renderField } from './renderfield';
+import { renderField } from './render-field';
 import { useBannerForm } from './use-banner-form';
 
-export function AddBanner() {
+export function EditBanner() {
 	const { form, onSubmit, isPending } = useBannerForm();
 
 	return (
@@ -25,7 +25,7 @@ export function AddBanner() {
 							type="submit"
 							className="w-[240px]"
 						>
-							Add
+							Update
 						</Button>
 					</div>
 				</form>
