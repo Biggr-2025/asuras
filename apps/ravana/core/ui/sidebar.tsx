@@ -170,7 +170,7 @@ const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
 						<ChevronRight className="!size-18 ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
-				<CollapsibleContent>
+				<CollapsibleContent className="pl-16">
 					<SidebarMenuSub className="mx-0 mt-8 gap-12 px-0">
 						{item?.items?.map((ite) => {
 							const active = pathname === ite.path;

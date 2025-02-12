@@ -23,6 +23,10 @@ const Varaints = dynamic(() => import('./ui/variants'), {
 	loading: () => <Spinner />,
 });
 
+const Tags = dynamic(() => import('./ui/tags/tags'), {
+	loading: () => <Spinner />,
+});
+
 export default function Page() {
 	const router = useRouter();
 	const pathname = usePathname();
@@ -38,7 +42,10 @@ export default function Page() {
 			<Tabs className="" value={type} onValueChange={handleChange}>
 				<TabsList className="mb-12 w-full justify-start bg-white">
 					<TabsTrigger className="flex-1 py-12" value="product">
-						Update Product
+						Details
+					</TabsTrigger>
+					<TabsTrigger className="flex-1 py-12" value="tags">
+						Tags
 					</TabsTrigger>
 					<TabsTrigger className="flex-1 py-12" value="images">
 						Product Images
@@ -52,6 +59,9 @@ export default function Page() {
 				</TabsList>
 				<TabsContent className="mt-0" value="product">
 					<ProductForm type="EDIT" />
+				</TabsContent>
+				<TabsContent className="mt-0" value="tags">
+					<Tags />
 				</TabsContent>
 				<TabsContent className="mt-0" value="images">
 					<ImagesContainer />

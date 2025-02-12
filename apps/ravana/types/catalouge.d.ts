@@ -13,7 +13,7 @@ declare namespace ICatalougeTypes {
 		subcategory: string;
 		colour: string;
 		size: string;
-		tags: ISpecifications[];
+		tags: string[];
 		updatedBy: string;
 		active: boolean;
 		images: IProductImage[];
@@ -121,7 +121,8 @@ declare namespace ICatalougeTypes {
 	interface ICategory {
 		_id: string;
 		name: string;
-		department: string;
+		department?: string;
+		category?: string;
 		image: ICategoryImage;
 		active: boolean;
 	}
