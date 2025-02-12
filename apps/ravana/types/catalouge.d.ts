@@ -13,7 +13,7 @@ declare namespace ICatalougeTypes {
 		subcategory: string;
 		colour: string;
 		size: string;
-		tags: ISpecifications[];
+		tags: string[];
 		updatedBy: string;
 		active: boolean;
 		images: IProductImage[];
