@@ -16,6 +16,11 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
 	Switch,
 } from '@asuras/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,6 +36,7 @@ const schema = z.object({
 	active: z.boolean(),
 	bgColorCode: z.string().min(1, { message: 'Type is required' }),
 	isImage: z.boolean(),
+	rank: z.string().min(1, { message: 'Rank is required' }),
 });
 
 type IFormData = z.infer<typeof schema>;
@@ -44,6 +50,7 @@ export function AddEditBanner({ type }: { type: 'ADD' | 'EDIT' }) {
 			active: false,
 			bgColorCode: '',
 			isImage: false,
+			rank: '0',
 		},
 	});
 	const params = useParams();
@@ -58,6 +65,7 @@ export function AddEditBanner({ type }: { type: 'ADD' | 'EDIT' }) {
 				active: data?.data?.banner?.active || false,
 				bgColorCode: data?.data?.banner?.bgColorCode || '',
 				isImage: data?.data?.banner?.isImage || false,
+				rank: data?.data?.banner?.rank.toString() || '0',
 			});
 		}
 	}, [
@@ -65,13 +73,19 @@ export function AddEditBanner({ type }: { type: 'ADD' | 'EDIT' }) {
 		data?.data?.banner?.bgColorCode,
 		data?.data?.banner?.description,
 		data?.data?.banner?.isImage,
+		data?.data?.banner?.rank,
 		data?.data?.banner?.title,
 		form,
 		params?.id,
 	]);
 
 	const onSubmit = async (values: IFormData) => {
-		const response = await updateBanner(values);
+		const { rank, ...rest } = values;
+		const payload = {
+			...rest,
+			rank: Number(rank),
+		};
+		const response = await updateBanner(payload);
 		if (response.status === 'SUCCESS') {
 			refetch();
 		}
@@ -80,25 +94,34 @@ export function AddEditBanner({ type }: { type: 'ADD' | 'EDIT' }) {
 	const fields: {
 		name: keyof IFormData;
 		label: string;
-		type: 'text' | 'switch' | 'textarea';
+		type: 'text' | 'switch' | 'textarea' | 'select';
 		desc?: string;
+		options?: any[];
 	}[] = [
-			{ name: 'title', label: 'Title', type: 'text' },
-			{ name: 'description', label: 'Description', type: 'textarea' },
-			{ name: 'bgColorCode', label: 'Background Color Code', type: 'text' },
-			{
-				name: 'isImage',
-				label: 'Is Banner Image',
-				desc: 'Check it if the banner is image.',
-				type: 'switch',
-			},
-			{
-				name: 'active',
-				label: 'Is Banner active',
-				desc: 'Make it inactive if you dont need.',
-				type: 'switch',
-			},
-		];
+		{ name: 'title', label: 'Title', type: 'text' },
+		{ name: 'description', label: 'Description', type: 'textarea' },
+		{ name: 'bgColorCode', label: 'Background Color Code', type: 'text' },
+		{
+			name: 'isImage',
+			label: 'Is Banner Image',
+			desc: 'Check it if the banner is image.',
+			type: 'switch',
+		},
+		{
+			name: 'active',
+			label: 'Is Banner active',
+			desc: 'Make it inactive if you dont need.',
+			type: 'switch',
+		},
+		{
+			name: 'rank',
+			label: 'Banner Priority',
+			type: 'select',
+			options: Array.from({ length: 100 }, (_, i) => {
+				return i + 1;
+			}),
+		},
+	];
 
 	const renderField = (field: (typeof fields)[number]) => {
 		if (field.type === 'switch') {
@@ -139,6 +162,44 @@ export function AddEditBanner({ type }: { type: 'ADD' | 'EDIT' }) {
 									{...(inputField as any)}
 								/>
 							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+			);
+		}
+		if (field.type === 'select') {
+			return (
+				<FormField
+					key={field.name}
+					control={form.control}
+					name={field.name as keyof IFormData}
+					render={({ field: selectField, fieldState }) => (
+						<FormItem className="relative">
+							<FormLabel>Banner Priority</FormLabel>
+							<Select
+								onValueChange={selectField.onChange}
+								defaultValue={`${selectField.value}`}
+								value={`${selectField.value}`}
+							>
+								<FormControl>
+									<SelectTrigger
+										isError={!!fieldState.error}
+										className="!mt-6 bg-white"
+									>
+										<SelectValue placeholder="Select a type" />
+									</SelectTrigger>
+								</FormControl>
+								<SelectContent>
+									{field.options?.map((option) => {
+										return (
+											<SelectItem key={`${option}`} value={`${option}`}>
+												{option}
+											</SelectItem>
+										);
+									})}
+								</SelectContent>
+							</Select>
 							<FormMessage />
 						</FormItem>
 					)}
