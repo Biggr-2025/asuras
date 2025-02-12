@@ -237,8 +237,6 @@ export default function ProductsList({
 			productIds: ids,
 			bannerGroupId: activeId,
 		};
-		console.log(ids);
-
 		const response = await updateGroupImageProducts(payload);
 		if (response.status === 'SUCCESS') {
 			refetch();
