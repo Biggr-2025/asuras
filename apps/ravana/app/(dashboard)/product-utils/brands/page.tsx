@@ -13,7 +13,7 @@ export default function Page() {
 			<ProductUtilList apiKey="productUtil/list" type="BRAND" active={0} count={1}>
 				<ProductUtilListingHeader />
 				<ProductUtilListingContent>
-					<ColumnsListing />
+					<ColumnsListing type="BRAND" />
 				</ProductUtilListingContent>
 			</ProductUtilList>
 		</div>

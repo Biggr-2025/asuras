@@ -13,7 +13,7 @@ export default function Page() {
 			<ProductUtilList apiKey="productUtil/list" type="SUBCATEGORY" active={0} count={1}>
 				<ProductUtilListingHeader />
 				<ProductUtilListingContent>
-					<ColumnsListing />
+					<ColumnsListing type="SUBCATEGORY" />
 				</ProductUtilListingContent>
 			</ProductUtilList>
 		</div>

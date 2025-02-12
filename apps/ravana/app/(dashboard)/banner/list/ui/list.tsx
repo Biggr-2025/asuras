@@ -24,7 +24,7 @@ export default function Listing() {
 	};
 
 	return (
-		<div className="shadow-card1 rounded-8 bg-white">
+		<div className="rounded-8 shadow-card1 bg-white">
 			<Header value={search} onChange={handleSearchChange} />
 			<ListingTable
 				isLoading={isPending}
