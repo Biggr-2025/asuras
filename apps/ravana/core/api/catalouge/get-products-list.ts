@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '../../services';
