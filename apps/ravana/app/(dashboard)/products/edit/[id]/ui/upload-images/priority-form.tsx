@@ -85,7 +85,7 @@ export default function PriorityUpdateForm({
 										</SelectTrigger>
 									</FormControl>
 									<SelectContent>
-										{Array.from({ length: 6 }, (_, index) => {
+										{Array.from({ length: 50 }, (_, index) => {
 											return (
 												<SelectItem value={`${index + 1}`} key={index}>
 													{index + 1}
