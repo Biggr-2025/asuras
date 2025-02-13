@@ -5,9 +5,9 @@ import { Button, Sheet } from '@asuras/ui';
 import { PlusIcon } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
-import { useCreateBannerGroup } from '../api/add-banner-group';
-import { useGetBannerById } from '../api/get-banner-by-id';
-import EditImageDetails from './form';
+import { useCreateBannerGroup } from '../../api/add-banner-group';
+import { useGetBannerById } from '../../api/get-banner-by-id';
+import EditImageDetails from '../form';
 import ImageItem from './image-item';
 import ProductsList from './products-list';
 import { BannerImageSheet } from './sheet';

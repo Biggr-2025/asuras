@@ -8,7 +8,10 @@ const getProductUtilsList = async ({
 }: QueryFunctionContext<[string, Record<string, any>]>) => {
 	const [_key, params] = queryKey;
 
-	const queryString = qs.stringify(params, { skipNulls: true, encodeValuesOnly: true });
+	const queryString = qs.stringify(params, {
+		skipNulls: true,
+		encode: false,
+	});
 
 	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/list?${queryString}`;
 

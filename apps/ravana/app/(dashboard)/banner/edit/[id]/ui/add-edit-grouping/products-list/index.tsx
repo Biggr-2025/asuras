@@ -40,12 +40,12 @@ import { ColumnDef, flexRender, getCoreRowModel, Row, useReactTable } from '@tan
 import { Trash2Icon } from 'lucide-react';
 import Link from 'next/link';
 
-import { useGetProductsByIds } from '../../../../../../core/api';
-import { Routes } from '../../../../../../core/primitives';
-import { queryClient } from '../../../../../../core/services/providers';
-import { ProductSearch } from '../../../../../../core/ui';
-import { useGetBannerGroupDetails } from '../api/get-banner-group-details';
-import { useUpdateBannerGroupProducts } from '../api/update-banner-group-products';
+import { useGetProductsByIds } from '../../../../../../../../core/api';
+import { Routes } from '../../../../../../../../core/primitives';
+import { queryClient } from '../../../../../../../../core/services/providers';
+import { ProductSearch } from '../../../../../../../../core/ui';
+import { useGetBannerGroupDetails } from '../../../api/get-banner-group-details';
+import { useUpdateBannerGroupProducts } from '../../../api/update-banner-group-products';
 
 const RowDragHandleCell = ({ rowId }: { rowId: string }) => {
 	const { attributes, listeners } = useSortable({

@@ -19,9 +19,7 @@ export default function Item({
 	refetch: () => void;
 }) {
 	const params = useParams();
-	const { mutateAsync: updateUtilType } = useUpdateUtilType(
-		decodeURIComponent(params?.name as string)
-	);
+	const { mutateAsync: updateUtilType } = useUpdateUtilType(params?.name as string);
 
 	const accept: { [key: string]: string[] } = { 'image/*': [] };
 
