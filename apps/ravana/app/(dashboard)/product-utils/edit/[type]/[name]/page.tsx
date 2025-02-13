@@ -15,7 +15,7 @@ export default function Page() {
 		page: 0,
 		limit: 5,
 		count: 0,
-		name: params?.name as string,
+		name: params?.name && decodeURIComponent(params?.name as string),
 	});
 	const imageData = data?.data?.list?.[0]?.image || ({} as ICatalougeTypes.ICategoryImage);
 
