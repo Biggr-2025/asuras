@@ -10,7 +10,7 @@ const getProductUtilsList = async ({
 
 	const queryString = qs.stringify(params, {
 		skipNulls: true,
-		encode: false,
+		encodeValuesOnly: true,
 	});
 
 	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/list?${queryString}`;
