@@ -13,6 +13,8 @@ export type IProductListingContextType = {
 	setPagination: (state: PaginationState) => void;
 	apiKey: string;
 	totalCount: number;
+	active: 0 | 1;
+	setActive: (active: 0 | 1) => void;
 };
 
 export type IStoreListingContextType = {

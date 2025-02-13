@@ -38,10 +38,11 @@ export function ProductListing({
 		pageIndex: Number(page) || 0,
 		pageSize: 15,
 	});
+	const [active, setActive] = useState<0 | 1>(0);
 	const { data, isFetching, refetch } = useGetProductsList(
 		search,
 		apiKey,
-		showInactive,
+		active,
 		pagination.pageIndex,
 		pagination.pageSize,
 		1
@@ -72,8 +73,11 @@ export function ProductListing({
 			setPagination,
 			apiKey,
 			totalCount: data?.data?.totalCount || 0,
+			active,
+			setActive,
 		}),
 		[
+			active,
 			apiKey,
 			data?.data?.products,
 			data?.data?.totalCount,
@@ -99,12 +103,21 @@ interface IProductListingHeaderProps {
 }
 
 export const ProductListingHeader = ({ className }: IProductListingHeaderProps) => {
-	const { value, handleSearchChange, pagination, setPagination } = useProductListingContext();
+	const { value, handleSearchChange, pagination, setPagination, active, setActive } =
+		useProductListingContext();
 
 	const handleRowChange = (newRow: string) => {
 		setPagination({
 			pageIndex: 0,
 			pageSize: Number(newRow),
+		});
+	};
+
+	const toggleActive = () => {
+		setActive(active === 1 ? 0 : 1);
+		setPagination({
+			...pagination,
+			pageIndex: 0,
 		});
 	};
 
@@ -138,7 +151,10 @@ export const ProductListingHeader = ({ className }: IProductListingHeaderProps) 
 						)}
 					</div>
 				</div>
-				<div className="flex flex-1 justify-end">
+				<div className="flex flex-1 items-center justify-end gap-16">
+					<Button onClick={toggleActive} variant="outline" size="sm" className="px-12">
+						<span className="font-medium">Show {active === 1 ? 'All' : 'Active'}</span>
+					</Button>
 					<div className="flex items-center gap-4">
 						<span className="whitespace-nowrap text-sm">Rows per page: </span>
 						<Select
