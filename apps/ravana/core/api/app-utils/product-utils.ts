@@ -1,46 +1,16 @@
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
+import qs from 'qs';
 
 import { HttpService } from '../../services';
 
 const getProductUtilsList = async ({
 	queryKey,
-}: QueryFunctionContext<
-	[
-		string,
-		string,
-		string,
-		0 | 1,
-		number,
-		number,
-		0 | 1,
-		string | undefined,
-		string | undefined,
-		string | undefined,
-	]
->) => {
-	const [_key, type, searchTerm, active, page, limit, count, department, category, name] =
-		queryKey;
+}: QueryFunctionContext<[string, Record<string, any>]>) => {
+	const [_key, params] = queryKey;
 
-	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/list?utilType=${type}&page=${page}&limit=${limit}`;
+	const queryString = qs.stringify(params, { skipNulls: true, encodeValuesOnly: true });
 
-	if (searchTerm && searchTerm.length > 2) {
-		url += `&searchTerm=${searchTerm}`;
-	}
-	if (active === 1) {
-		url += `&active=1`;
-	}
-	if (count === 1) {
-		url += `&count=1`;
-	}
-	if (department) {
-		url += `&department=${department}`;
-	}
-	if (category) {
-		url += `&category=${category}`;
-	}
-	if (name) {
-		url += `&name=${name}`;
-	}
+	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/list?${queryString}`;
 
 	const { data } =
 		await HttpService.get<
@@ -61,6 +31,7 @@ export function useGetProductUtilsList({
 	department,
 	category,
 	name,
+	enabled,
 }: {
 	apiKey: string;
 	type: string;
@@ -72,21 +43,24 @@ export function useGetProductUtilsList({
 	department?: string;
 	category?: string;
 	name?: string;
+	enabled?: boolean;
 }) {
+	const queryParams = {
+		utilType: type,
+		searchTerm: searchTerm?.length > 2 ? searchTerm : undefined,
+		active: active === 1 ? active : undefined,
+		count: count === 1 ? count : undefined,
+		page,
+		limit,
+		department,
+		category,
+		name,
+	};
+
 	return useQuery({
-		queryKey: [
-			apiKey,
-			type,
-			searchTerm,
-			active,
-			page,
-			limit,
-			count,
-			department,
-			category,
-			name,
-		],
+		queryKey: [apiKey, queryParams],
 		queryFn: getProductUtilsList,
 		placeholderData: keepPreviousData,
+		enabled,
 	});
 }
