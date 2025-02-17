@@ -11,7 +11,7 @@ export const Header = () => {
 			<div className="flex items-center">
 				{/* <SidebarTrigger /> */}
 				<ImagePlaceholder
-					src="/images/logo.svg"
+					src="/images/logo.png"
 					containerClasses="w-[110px] h-[38px]"
 					imageClasses="object-cover"
 				/>
