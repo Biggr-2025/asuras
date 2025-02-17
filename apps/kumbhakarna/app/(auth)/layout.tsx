@@ -134,7 +134,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 			<RegisterForm open={showRegister} onChange={setRegister} />
 			<div className="shadow-card1 fixed bottom-0 w-full bg-white p-12 lg:hidden">
 				<Button onClick={() => setRegister(true)} className="w-full">
-					<span className="text-18">Register</span>
+					<span className="text-18">Register for Free</span>
 				</Button>
 			</div>
 		</section>
