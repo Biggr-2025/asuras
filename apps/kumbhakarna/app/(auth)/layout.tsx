@@ -19,9 +19,9 @@ const RegisterForm = dynamic(() => import('./_ui/register-form'), {
 });
 
 const details = [
-	'Take your store online at a click',
-	'Sell your products online',
-	'Free and fast Onboarding with Zero subscribtion fee',
+	'Take your store brand online at a click',
+	'Grow your business, Sell your products online',
+	'Free and fast Onboarding with Zero fee',
 ];
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
@@ -64,7 +64,11 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 						<h1 className="text-28 lg:text-42 text-center font-bold">to go Digital</h1>
 					</div>
 					<div className="col-span-1 my-32 w-full lg:col-span-3">{children}</div>
-					<div className="gap-18 flex flex-col">
+					<div className="text-16">
+						A consumer online platform designed to help retail stores sell online, with
+						their brand name getting prominent Digital visibility.
+					</div>
+					<div className="gap-18 my-24 flex flex-col">
 						{details.map((detail, i) => {
 							return (
 								<div className="flex gap-8" key={i}>
@@ -76,9 +80,13 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 							);
 						})}
 					</div>
+					<div>
+						<h1 className="text-28 lg:text-42 text-center font-bold">Start Selling</h1>
+						<h1 className="text-28 lg:text-42 text-center font-bold">With Biggr</h1>
+					</div>
 				</div>
 			</div>
-			<div className="rounded-16 bg-grey-cream mx-12 my-24 hidden flex-1 grid-cols-1 lg:mx-24 lg:grid lg:grid-cols-5 lg:overflow-hidden">
+			<div className="rounded-16 bg-grey-cream mx-12 my-24 hidden flex-1 grid-cols-1 lg:mx-24 lg:grid lg:grid-cols-5">
 				<div className="order-last col-span-1 flex items-center justify-center lg:order-first lg:col-span-2">
 					<div className="flex h-full flex-col justify-evenly px-16 py-24 lg:px-24 lg:py-32">
 						<div>
@@ -89,7 +97,11 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 								to go Digital
 							</h1>
 						</div>
-						<div className="gap-18 mt-24 flex flex-col">
+						<p className="gap-18 text-16 my-24 flex flex-col">
+							A consumer online platform designed to help retail stores sell online,
+							with their brand name getting prominent Digital visibility.
+						</p>
+						<div className="gap-18 mb-24 flex flex-col">
 							{details.map((detail, i) => {
 								return (
 									<div className="flex gap-8" key={i}>
@@ -101,15 +113,22 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 								);
 							})}
 						</div>
+						<div className="mb-12 mt-24">
+							<h1 className="text-28 lg:text-18 text-center font-bold">
+								Start Selling With Biggr
+							</h1>
+						</div>
 						<Button
 							onClick={() => setRegister(true)}
-							className="mx-auto mt-24 hidden w-[240px] rounded-full lg:block"
+							className="mx-auto hidden w-[240px] rounded-full lg:block"
 						>
-							<span className="text-18">Register</span>
+							<span className="text-18">Register for Free</span>
 						</Button>
 					</div>
 				</div>
-				<div className="col-span-1 lg:col-span-3">{children}</div>
+				<div className="col-span-1 flex items-center justify-center lg:col-span-3">
+					{children}
+				</div>
 			</div>
 			<LoginForm open={showLogin} onChange={setLogin} />
 			<RegisterForm open={showRegister} onChange={setRegister} />

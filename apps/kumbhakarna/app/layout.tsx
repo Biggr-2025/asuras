@@ -13,22 +13,24 @@ export const metadata = {
 	themeColor: '#ffffff',
 	icons: {
 		icon: [
-			{ url: '/favicon/icon-192.png', sizes: '192x192' },
-			{ url: '/favicon/icon-512.png', sizes: '512x512' },
+			{ rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon/favicon-16x16.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon/favicon-32x32.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '96x96', url: '/favicon/favicon-96x96.png' },
 			{
-				url: '/favicon/icon-192-maskable.png',
+				rel: 'icon',
+				type: 'image/png',
 				sizes: '192x192',
-				type: 'image/png',
-				purpose: 'maskable',
-			},
-			{
-				url: '/favicon/icon-512-maskable.png',
-				sizes: '512x512',
-				type: 'image/png',
-				purpose: 'maskable',
+				url: '/favicon/android-icon-192x192.png',
 			},
 		],
-		apple: '/favicon/apple-touch-icon.png',
+		apple: [
+			{ rel: 'apple-touch-icon', sizes: '152x152', url: '/favicon/apple-icon-152x152.png' },
+			{ rel: 'apple-touch-icon', sizes: '180x180', url: '/favicon/apple-icon-180x180.png' },
+		],
+		other: [
+			{ rel: 'manifest', url: '/favicon/manifest.json' },
+			{ rel: 'msapplication-TileImage', url: '/favicon/ms-icon-144x144.png' },
+		],
 		shortcut: '/favicon/favicon.ico',
 	},
 };
