@@ -41,7 +41,7 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 		apiKey: 'productUtil/list',
 		type: paramKey,
 		searchTerm: value,
-		active: 0,
+		active: 1,
 		page: 0,
 		limit: 30,
 		count: 1,
