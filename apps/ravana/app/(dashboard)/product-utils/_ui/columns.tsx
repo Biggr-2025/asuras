@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { cn } from '@asuras/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
 import { Routes } from '../../../../core/primitives';
 import { ProductUtilsTable } from '../../../../core/ui/product-util/table';
+import Status from './active';
 
 export default function ColumnsListing({ type }: { type: string }) {
 	const columns: ColumnDef<ICatalougeTypes.ICategory>[] = useMemo(() => {
@@ -49,44 +49,9 @@ export default function ColumnsListing({ type }: { type: string }) {
 			accessorKey: 'active',
 			header: 'Status',
 			cell: ({ row }) => {
-				const status = row.getValue('active');
 				return (
 					<div className="flex items-center gap-12">
-						<div
-							className={cn(
-								'!text-12 inline-block rounded-full px-12 py-4 !font-semibold',
-								status ? 'bg-primary text-white' : 'bg-red-1 text-white'
-							)}
-						>
-							{status ? 'Active' : 'Inactive'}
-						</div>
-						{/* <AlertDialog>
-							<AlertDialogTrigger asChild>
-								<Button size="icon" variant="ghost">
-									<PencilIcon className="!size-16" />
-								</Button>
-							</AlertDialogTrigger>
-							<AlertDialogContent className="gap-24">
-								<AlertDialogHeader>
-									<AlertDialogTitle className="text-24">
-										Update Status?
-									</AlertDialogTitle>
-									<AlertDialogDescription>
-										Are you sure you want to update the status.
-									</AlertDialogDescription>
-								</AlertDialogHeader>
-								<AlertDialogFooter className="!pt-32">
-									<AlertDialogCancel>
-										<span className="text-14 font-normal">Cancel</span>
-									</AlertDialogCancel>
-									<AlertDialogAction
-									// onClick={() => handleDeleteProduct(row.original.productId)}
-									>
-										Continue
-									</AlertDialogAction>
-								</AlertDialogFooter>
-							</AlertDialogContent>
-						</AlertDialog> */}
+						<Status row={row.original} type={type} />
 					</div>
 				);
 			},
