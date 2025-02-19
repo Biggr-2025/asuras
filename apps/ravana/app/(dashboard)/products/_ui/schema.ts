@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const schema = z.object({
 	title: z.string().min(3, { message: 'Title is required' }),
-	description: z.string().min(6, { message: 'Description is required' }),
+	description: z.string().optional(),
 	quantity: z.string().min(1, { message: 'Quantity must be at least 1' }),
 	packQuantity: z.string().min(1, { message: 'Pack Quantity must be at least 1' }),
 	mrp: z.string().min(1, { message: 'MRP is required' }),
