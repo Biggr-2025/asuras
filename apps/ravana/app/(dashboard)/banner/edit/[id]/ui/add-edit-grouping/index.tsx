@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, Sheet } from '@asuras/ui';
 import { PlusIcon } from 'lucide-react';
 import { useParams } from 'next/navigation';
@@ -9,7 +9,7 @@ import { useCreateBannerGroup } from '../../api/add-banner-group';
 import { useGetBannerById } from '../../api/get-banner-by-id';
 import EditImageDetails from '../form';
 import ImageItem from './image-item';
-import ProductsList from './products-list';
+import ProductTypes from './product-types';
 import { BannerImageSheet } from './sheet';
 
 export default function AddEditGrouping() {
@@ -18,7 +18,9 @@ export default function AddEditGrouping() {
 	const [show, setShow] = useState(false);
 	const [showForm, setShowForm] = useState(false);
 	const [activeId, setActiveId] = useState<string | undefined>(undefined);
-	const bannerData = data?.data?.banner || ({} as ICatalougeTypes.IBannerDetails);
+	const bannerData = useMemo(() => {
+		return data?.data?.banner || ({} as ICatalougeTypes.IBannerDetails);
+	}, [data?.data?.banner]);
 	const { mutateAsync: createBannerGroup } = useCreateBannerGroup(params?.id as string);
 
 	const handleMore = async () => {
@@ -83,7 +85,7 @@ export default function AddEditGrouping() {
 				</div>
 				{showForm && (
 					<div className="rounded-8 shadow-card1 col-span-3 mt-24 bg-white">
-						<ProductsList
+						<ProductTypes
 							bannerId={params?.id as string}
 							activeId={activeId as string}
 						/>

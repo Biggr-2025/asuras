@@ -84,6 +84,10 @@ declare namespace ICatalougeTypes {
 		_id: string;
 		createdAt: string;
 		updatedAt: string;
+		brands: string[];
+		departments: string[];
+		categories: string[];
+		subCategories: string[];
 	}
 	interface IStore {
 		mobile: string;

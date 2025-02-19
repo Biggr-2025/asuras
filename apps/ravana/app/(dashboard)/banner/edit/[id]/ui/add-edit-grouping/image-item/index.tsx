@@ -1,5 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable prettier/prettier */
 import { ImagePlaceholder, Sheet } from '@asuras/ui';
 
 import { BannerImageSheet } from '../sheet';
@@ -43,7 +41,7 @@ export default function ImageItem({
 
 	return (
 		<div
-			className={`border-grey-light relative z-10 col-span-1 h-[182px] w-full rounded-[12px] border p-4 ${
+			className={`rounded-12 border-grey-light relative z-10 col-span-1 h-[182px] w-full border p-4 ${
 				activeId === image._id ? 'border-primary shadow-card1 border-2' : ''
 			}`}
 			onClick={handleImageClick}

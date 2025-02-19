@@ -4,7 +4,8 @@ import { toast } from 'sonner';
 import { HttpService } from '../../../../../../core/services';
 
 interface IPayload {
-	productIds: string[];
+	productIds?: string[];
+	brands?: string[];
 	bannerGroupId: string;
 }
 
@@ -15,6 +16,7 @@ const updateBannerGroupProducts = async (payload: IPayload, id: string) => {
 		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/banner/updateGroupItems/${id}`, payload);
 		return data;
 	} catch (err) {
+		console.log(err);
 		throw new Error('Network Error. Please try again.');
 	}
 };

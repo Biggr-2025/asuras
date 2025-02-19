@@ -37,7 +37,7 @@ import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-ki
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { ColumnDef, flexRender, getCoreRowModel, Row, useReactTable } from '@tanstack/react-table';
-import { Trash2Icon } from 'lucide-react';
+import { GrabIcon, Trash2Icon } from 'lucide-react';
 import Link from 'next/link';
 
 import { useGetProductsByIds } from '../../../../../../../../core/api';
@@ -53,7 +53,7 @@ const RowDragHandleCell = ({ rowId }: { rowId: string }) => {
 	});
 	return (
 		<button {...attributes} {...listeners}>
-			🟰
+			<GrabIcon />
 		</button>
 	);
 };

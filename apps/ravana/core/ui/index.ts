@@ -17,3 +17,4 @@ export { StoreListingTable } from './listing-tables/store-listing-table';
 export { LoadingModal } from './loading-modal';
 export { ProductSearch } from './product-search';
 export { AppSidebar } from './sidebar';
+export { UtilsSearch } from './utils-search';
