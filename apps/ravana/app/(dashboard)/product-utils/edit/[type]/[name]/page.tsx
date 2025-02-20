@@ -17,7 +17,7 @@ export default function Page() {
 		count: 0,
 		name: params?.name && decodeURIComponent(params?.name as string),
 	});
-	const imageData = data?.data?.list?.[0]?.image || ({} as ICatalougeTypes.ICategoryImage);
+	const imageData = data?.data?.list?.[0] || ({} as ICatalougeTypes.ICategoryImage);
 
 	return (
 		<div className="h-full">

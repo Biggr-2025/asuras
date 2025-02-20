@@ -35,8 +35,7 @@ const getProductUtilsList = async ({
 
 	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/list?${queryString}`;
 
-	const { data } =
-		await HttpService.get<IApiResponse<{ list: ICategory[]; totalCount: number }>>(url);
+	const { data } = await HttpService.get<IApiResponse<{ list: any[]; totalCount: number }>>(url);
 
 	return data;
 };
