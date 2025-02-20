@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 interface IPayload {
 	bannerGroupId: string;
@@ -9,7 +10,7 @@ interface IPayload {
 
 const deleteBannerGroup = async (id: string, payload: IPayload) => {
 	try {
-		const { data } = await HttpService.patch<ICommonTypes.IApiResponse<any>>(
+		const { data } = await HttpService.patch<IApiResponse<any>>(
 			`${process.env.NEXT_PUBLIC_BASE_PATH}/banner/removeGroup/${id}`,
 			payload
 		);

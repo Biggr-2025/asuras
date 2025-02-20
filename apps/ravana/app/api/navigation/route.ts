@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 
 import { Routes } from '../../../core/primitives';
+import { INavigationItem } from '../../../types';
 
-const data: ICommonTypes.INavigationItem[] = [
+const data: INavigationItem[] = [
 	{
 		id: 1,
 		type: 'link',

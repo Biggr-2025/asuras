@@ -1,12 +1,14 @@
+/* eslint-disable max-params */
 import { QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 const getStoreDocs = async ({ queryKey }: QueryFunctionContext<[string, string, string]>) => {
 	const [_key, storeId, type] = queryKey;
-	const { data } = await HttpService.get<
-		ICommonTypes.IApiResponse<{ docUrl: string; type: string }>
-	>(`${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${storeId}/${type}`);
+	const { data } = await HttpService.get<IApiResponse<{ docUrl: string; type: string }>>(
+		`${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${storeId}/${type}`
+	);
 	return data;
 };
 

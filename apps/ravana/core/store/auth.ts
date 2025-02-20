@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { jwtDecode } from 'jwt-decode';
 
+import { ISubscription } from '../../types';
+
 type AuthState = {
 	loading: boolean;
 	loggedIn: boolean;
@@ -15,7 +17,7 @@ type AuthState = {
 	updatedAt?: string;
 	iat?: number;
 	exp?: number;
-	subscription?: null | IAuthTypes.ISubscription;
+	subscription?: null | ISubscription;
 	accessToken: string | null;
 	refreshToken: string | null;
 };

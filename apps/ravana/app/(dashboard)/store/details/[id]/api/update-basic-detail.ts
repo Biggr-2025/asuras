@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 interface IPayload {
 	name: string;
@@ -11,7 +12,7 @@ interface IPayload {
 
 const updateBasicDetails = async (payload: IPayload, id: string) => {
 	try {
-		const { data } = await HttpService.patch<ICommonTypes.IApiResponse<any>>(
+		const { data } = await HttpService.patch<IApiResponse<any>>(
 			`${process.env.NEXT_PUBLIC_BASE_PATH}/store/basicDetail/${id}`,
 			payload
 		);

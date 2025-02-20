@@ -44,6 +44,7 @@ import { useGetProductsByIds } from '../../../../../../../../core/api';
 import { Routes } from '../../../../../../../../core/primitives';
 import { queryClient } from '../../../../../../../../core/services/providers';
 import { ProductSearch } from '../../../../../../../../core/ui';
+import { IApiResponse } from '../../../../../../../../types';
 import { useGetBannerGroupDetails } from '../../../api/get-banner-group-details';
 import { useUpdateBannerGroupProducts } from '../../../api/update-banner-group-products';
 
@@ -110,7 +111,7 @@ export default function ProductsList({
 		async (productId: string) => {
 			//EXPLANATION:
 			// const latestBannerData = queryClient.getQueryData(['banner/group', activeId, bannerId]) as
-			// 	ICommonTypes.IApiResponse<{ group: ICatalougeTypes.IBannerImage }>
+			// 	IApiResponse<{ group: ICatalougeTypes.IBannerImage }>
 			// 	;
 			// Explanation on why we are getting the data here, so when the function is created bannerdata is undefined at start and the handleDeleteProduct is also created at the same time so bannerdata is undefined at the function creationg time, so the function has bannerdata as undefined when you get the data so thats why we are getting the last fresh data
 
@@ -118,7 +119,7 @@ export default function ProductsList({
 				'banner/group',
 				activeId,
 				bannerId,
-			]) as ICommonTypes.IApiResponse<{ group: ICatalougeTypes.IBannerImage }>;
+			]) as IApiResponse<{ group: ICatalougeTypes.IBannerImage }>;
 			const productIds = latestBannerData?.data?.group?.productIds as string[];
 			const removeBannerProduct = productIds?.filter((id) => id !== productId);
 			const payload = {

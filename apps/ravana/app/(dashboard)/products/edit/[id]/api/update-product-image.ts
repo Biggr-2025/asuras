@@ -2,10 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 const updateProductImage = async (id: string, payload: FormData) => {
 	try {
-		const { data } = await HttpService.patch<ICommonTypes.IApiResponse<{ product: object }>>(
+		const { data } = await HttpService.patch<IApiResponse<{ product: object }>>(
 			`${process.env.NEXT_PUBLIC_BASE_PATH}/product/changeImage/${id}`,
 			payload
 		);

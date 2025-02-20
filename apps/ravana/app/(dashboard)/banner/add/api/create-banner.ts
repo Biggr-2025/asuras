@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../core/services';
+import { IApiResponse } from '../../../../../types';
 
 interface IPayload {
 	title: string;
@@ -12,7 +13,7 @@ interface IPayload {
 const createBanner = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.post<
-			ICommonTypes.IApiResponse<{ banner: ICatalougeTypes.IBannerDetails }>
+			IApiResponse<{ banner: ICatalougeTypes.IBannerDetails }>
 		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/banner/create`, payload);
 		return data;
 	} catch (err) {

@@ -26,6 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { createFormDataForImage } from '../../../../../../../core/helpers';
+import { IFileWithPreview } from '../../../../../../../types';
 import { useCreateProductImage } from '../../api/create-product-image';
 
 const schema = z.object({
@@ -45,7 +46,7 @@ export default function UploadImageForm({
 	open: boolean;
 	onChange: (open: boolean) => void;
 }) {
-	const [files, setFiles] = useState<ICommonTypes.IFileWithPreview[]>([]);
+	const [files, setFiles] = useState<IFileWithPreview[]>([]);
 	const { mutateAsync: uploadImage, isPending } = useCreateProductImage(id as string);
 
 	const form = useForm<FormData>({
@@ -66,7 +67,7 @@ export default function UploadImageForm({
 		}
 	};
 
-	const handleFilesUpdate = (newFiles: ICommonTypes.IFileWithPreview[]) => {
+	const handleFilesUpdate = (newFiles: IFileWithPreview[]) => {
 		setFiles(newFiles);
 	};
 

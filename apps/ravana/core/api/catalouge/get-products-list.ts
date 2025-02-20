@@ -1,6 +1,7 @@
 /* eslint-disable max-params */
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
+import { IApiResponse } from '../../../types';
 import { HttpService } from '../../services';
 
 const getProductsList = async ({
@@ -22,7 +23,7 @@ const getProductsList = async ({
 
 	const { data } =
 		await HttpService.get<
-			ICommonTypes.IApiResponse<{ products: ICatalougeTypes.IProduct[]; totalCount: number }>
+			IApiResponse<{ products: ICatalougeTypes.IProduct[]; totalCount: number }>
 		>(url);
 
 	return data;

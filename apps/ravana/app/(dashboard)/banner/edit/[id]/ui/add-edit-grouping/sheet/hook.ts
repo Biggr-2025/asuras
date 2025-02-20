@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import { createFormDataForImage } from '../../../../../../../../core/helpers';
+import { IFileWithPreview } from '../../../../../../../../types';
 import { useCreateBannerGroup } from '../../../api/add-banner-group';
 import { useUpdateBannerGroupImage } from '../../../api/update-banner-group-image';
 
@@ -18,7 +19,7 @@ export function useBannerImage({
 	setUpdateImage: (type: boolean) => void;
 	image?: ICatalougeTypes.IBannerImage | null;
 }) {
-	const [files, setFiles] = useState<ICommonTypes.IFileWithPreview[]>([]);
+	const [files, setFiles] = useState<IFileWithPreview[]>([]);
 	const { mutateAsync: createBannerGroup, isPending } = useCreateBannerGroup(id);
 	const { mutateAsync: updateBanner, isPending: isLoading } = useUpdateBannerGroupImage(id);
 
@@ -39,7 +40,7 @@ export function useBannerImage({
 			setFiles([
 				{
 					preview: `${process.env.NEXT_PUBLIC_IMAGE_PATH}/${image.url}`,
-				} as ICommonTypes.IFileWithPreview,
+				} as IFileWithPreview,
 			]);
 		}
 	}, [image, type]);

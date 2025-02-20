@@ -49,7 +49,6 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 		category: paramKey === 'SUBCATEGORY' ? category : undefined,
 		enabled: paramKey === 'DEPARTMENT' || paramKey === 'BRAND' || !!dependentField,
 	});
-
 	useEffect(() => {
 		if (dependentField) {
 			refetch();
@@ -61,65 +60,69 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 			control={form.control}
 			name={name}
 			key={name}
-			render={({ field }) => (
-				<FormItem className="flex flex-col">
-					<FormLabel>{label}</FormLabel>
-					<Popover>
-						<PopoverTrigger asChild>
-							<FormControl>
-								<Button
-									variant="outline"
-									role="combobox"
-									className={cn(
-										'border-grey-light h-48 justify-between',
-										!field.value && 'text-muted-foreground'
-									)}
-								>
-									<span className="text-14 font-normal">
-										{field.value ? field.value : 'Select an Option'}
-									</span>
-									<ChevronsUpDown className="!size-16 opacity-50" />
-								</Button>
-							</FormControl>
-						</PopoverTrigger>
-						<PopoverContent className="w-[320px] p-0">
-							<Command>
-								<CommandInput
-									value={value}
-									onValueChange={setValue}
-									placeholder="Search ..."
-									className="h-42"
-								/>
-								<CommandList>
-									<CommandEmpty>No options found.</CommandEmpty>
-									<CommandGroup>
-										{data?.data?.list?.map((option) => (
-											<CommandItem
-												value={option.name}
-												key={option.name}
-												onSelect={() => {
-													form.setValue(name, option.name);
-												}}
-											>
-												{option.name}
-												<Check
-													className={cn(
-														'ml-auto',
-														option.name === field.value
-															? 'opacity-100'
-															: 'opacity-0'
-													)}
-												/>
-											</CommandItem>
-										))}
-									</CommandGroup>
-								</CommandList>
-							</Command>
-						</PopoverContent>
-					</Popover>
-					<FormMessage />
-				</FormItem>
-			)}
+			render={({ field }) => {
+				console.log(field);
+
+				return (
+					<FormItem className="flex flex-col">
+						<FormLabel>{label}</FormLabel>
+						<Popover>
+							<PopoverTrigger asChild>
+								<FormControl>
+									<Button
+										variant="outline"
+										role="combobox"
+										className={cn(
+											'border-grey-light h-48 justify-between',
+											!field.value && 'text-muted-foreground'
+										)}
+									>
+										<span className="text-14 font-normal">
+											{field.value ? field.value : 'Select an Option'}
+										</span>
+										<ChevronsUpDown className="!size-16 opacity-50" />
+									</Button>
+								</FormControl>
+							</PopoverTrigger>
+							<PopoverContent className="w-[320px] p-0">
+								<Command>
+									<CommandInput
+										value={value}
+										onValueChange={setValue}
+										placeholder="Search ..."
+										className="h-42"
+									/>
+									<CommandList>
+										<CommandEmpty>No options found.</CommandEmpty>
+										<CommandGroup>
+											{data?.data?.list?.map((option) => (
+												<CommandItem
+													value={option.name}
+													key={option.name}
+													onSelect={() => {
+														form.setValue(name, option.name);
+													}}
+												>
+													{option.name}
+													<Check
+														className={cn(
+															'ml-auto',
+															option.name === field.value
+																? 'opacity-100'
+																: 'opacity-0'
+														)}
+													/>
+												</CommandItem>
+											))}
+										</CommandGroup>
+									</CommandList>
+								</Command>
+							</PopoverContent>
+						</Popover>
+						<FormMessage />
+					</FormItem>
+				);
+			}}
 		/>
 	);
 }

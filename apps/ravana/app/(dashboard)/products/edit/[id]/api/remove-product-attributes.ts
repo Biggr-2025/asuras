@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 interface IPayload {
 	id: string;
@@ -11,7 +12,7 @@ interface IPayload {
 const removeProductAttributes = async (id: string, payload: IPayload) => {
 	try {
 		const { data } = await HttpService.patch<
-			ICommonTypes.IApiResponse<{ product: ICatalougeTypes.IProduct }>
+			IApiResponse<{ product: ICatalougeTypes.IProduct }>
 		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/product/removeAttribute/${id}`, payload);
 		return data;
 	} catch (err) {
