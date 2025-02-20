@@ -31,6 +31,7 @@ declare namespace ICatalougeTypes {
 		productVariantIds?: string[];
 		dimensions: ISpecifications[];
 		department: string;
+		barCodeNo: string;
 	}
 
 	interface IProductImage {

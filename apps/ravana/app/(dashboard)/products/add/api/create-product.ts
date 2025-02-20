@@ -18,6 +18,7 @@ interface IPayload {
 	subcategory: string;
 	colour?: string;
 	size?: string;
+	barCodeNo?: string;
 }
 
 const createProduct = async (payload: IPayload) => {

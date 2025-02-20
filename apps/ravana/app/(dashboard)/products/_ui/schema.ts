@@ -16,6 +16,7 @@ export const schema = z.object({
 	colour: z.string().optional(),
 	size: z.string().optional(),
 	active: z.string().optional(),
+	barCodeNo: z.string().optional(),
 });
 
 export type IFormData = z.infer<typeof schema>;
