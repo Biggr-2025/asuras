@@ -6,7 +6,7 @@ import { HttpService } from '../../../../../../core/services';
 
 interface IPayload {
 	title: string;
-	description: string;
+	description?: string;
 	quantity: number;
 	packQuantity: number;
 	mrp: number;
