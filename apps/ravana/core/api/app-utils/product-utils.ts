@@ -4,9 +4,28 @@ import qs from 'qs';
 import { IApiResponse } from '../../../types';
 import { HttpService } from '../../services';
 
+interface ICategory {
+	id: string;
+	name: string;
+}
+
+interface IProductUtilsParams {
+	apiKey: string;
+	type: string;
+	searchTerm?: string;
+	active: 0 | 1;
+	page: number;
+	limit: number;
+	count: 0 | 1;
+	department?: string;
+	category?: string;
+	name?: string;
+	enabled?: boolean;
+}
+
 const getProductUtilsList = async ({
 	queryKey,
-}: QueryFunctionContext<[string, Record<string, any>]>) => {
+}: QueryFunctionContext<[string, Partial<IProductUtilsParams>]>) => {
 	const [_key, params] = queryKey;
 
 	const queryString = qs.stringify(params, {
@@ -17,9 +36,7 @@ const getProductUtilsList = async ({
 	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/list?${queryString}`;
 
 	const { data } =
-		await HttpService.get<
-			IApiResponse<{ list: ICatalougeTypes.ICategory[]; totalCount: number }>
-		>(url);
+		await HttpService.get<IApiResponse<{ list: ICategory[]; totalCount: number }>>(url);
 
 	return data;
 };
@@ -35,23 +52,11 @@ export function useGetProductUtilsList({
 	department,
 	category,
 	name,
-	enabled,
-}: {
-	apiKey: string;
-	type: string;
-	searchTerm: string;
-	active: 0 | 1;
-	page: number;
-	limit: number;
-	count: 0 | 1;
-	department?: string;
-	category?: string;
-	name?: string;
-	enabled?: boolean;
-}) {
-	const queryParams = {
-		utilType: type,
-		searchTerm: searchTerm?.length > 2 ? searchTerm : undefined,
+	enabled = true,
+}: IProductUtilsParams) {
+	const queryParams: Partial<IProductUtilsParams> = {
+		type,
+		searchTerm: searchTerm && searchTerm.length > 2 ? searchTerm : undefined,
 		active: active === 1 ? active : undefined,
 		count: count === 1 ? count : undefined,
 		page,

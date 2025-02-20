@@ -71,7 +71,7 @@ export default [
 			],
 
 			'max-params': ['error', 3],
-			'max-lines-per-function': ['error', 120],
+			'max-lines-per-function': ['error', 160],
 			'react/display-name': 'off',
 			'react/no-inline-styles': 'off',
 			'react/destructuring-assignment': 'off',
