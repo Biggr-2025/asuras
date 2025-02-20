@@ -9,7 +9,7 @@ export default function Page() {
 	const params = useParams();
 	const { data, refetch } = useGetProductUtilsList({
 		apiKey: 'productUtil/name',
-		type: params?.type as string,
+		utilType: params?.type as string,
 		searchTerm: '',
 		active: 1,
 		page: 0,
@@ -17,7 +17,7 @@ export default function Page() {
 		count: 0,
 		name: params?.name && decodeURIComponent(params?.name as string),
 	});
-	const imageData = data?.data?.list?.[0] || ({} as ICatalougeTypes.ICategoryImage);
+	const imageData = data?.data?.list?.[0]?.image || ({} as ICatalougeTypes.ICategoryImage);
 
 	return (
 		<div className="h-full">

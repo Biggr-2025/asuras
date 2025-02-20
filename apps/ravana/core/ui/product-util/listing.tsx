@@ -37,7 +37,7 @@ export function ProductUtilList({
 	const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 	const { data, isPending, refetch } = useGetProductUtilsList({
 		apiKey: 'productUtil/list',
-		type,
+		utilType: type,
 		searchTerm: search,
 		active: 0,
 		page: pagination.pageIndex,

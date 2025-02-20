@@ -11,7 +11,7 @@ interface ICategory {
 
 interface IProductUtilsParams {
 	apiKey: string;
-	type: string;
+	utilType: string;
 	searchTerm?: string;
 	active: 0 | 1;
 	page: number;
@@ -42,7 +42,7 @@ const getProductUtilsList = async ({
 
 export function useGetProductUtilsList({
 	apiKey,
-	type,
+	utilType,
 	searchTerm,
 	active,
 	page,
@@ -54,7 +54,7 @@ export function useGetProductUtilsList({
 	enabled = true,
 }: IProductUtilsParams) {
 	const queryParams: Partial<IProductUtilsParams> = {
-		type,
+		utilType,
 		searchTerm: searchTerm && searchTerm.length > 2 ? searchTerm : undefined,
 		active: active === 1 ? active : undefined,
 		count: count === 1 ? count : undefined,
@@ -64,6 +64,7 @@ export function useGetProductUtilsList({
 		category,
 		name,
 	};
+	console.log(queryParams);
 
 	return useQuery({
 		queryKey: [apiKey, queryParams],
