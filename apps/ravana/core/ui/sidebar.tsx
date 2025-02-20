@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
 'use client';
 
 import {
@@ -39,6 +41,7 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { INavigationItem } from '../../types';
 import { useGetNavigation } from '../api';
 import { logout } from '../helpers';
 import { useAppSelector } from '../store';
@@ -119,7 +122,7 @@ export const AppSidebar = () => {
 	);
 };
 
-const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
+const Menu = ({ navMenu }: { navMenu: INavigationItem[] }) => {
 	const pathname = usePathname();
 
 	return (
@@ -154,7 +157,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 	);
 };
 
-const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
+const MenuItem = ({ item }: { item: INavigationItem }) => {
 	const Icon = item.icon ? IconMap[item.icon] : null;
 	const pathname = usePathname();
 	const activeItem = pathname.split('/').filter(Boolean)[0];

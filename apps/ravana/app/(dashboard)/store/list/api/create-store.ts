@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../core/services';
+import { IApiResponse } from '../../../../../types';
 
 interface IPayload {
 	mobile: number;
@@ -10,7 +11,7 @@ interface IPayload {
 
 const createStore = async (payload: IPayload) => {
 	try {
-		const { data } = await HttpService.post<ICommonTypes.IApiResponse<any>>(
+		const { data } = await HttpService.post<IApiResponse<any>>(
 			`${process.env.NEXT_PUBLIC_BASE_PATH}/store/add`,
 			payload
 		);

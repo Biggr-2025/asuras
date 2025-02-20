@@ -1,6 +1,7 @@
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '../../../../../core/services';
+import { IApiResponse } from '../../../../../types';
 
 const getBanners = async ({ queryKey }: QueryFunctionContext<[string, string, number, number]>) => {
 	const [_key, searchTerm, limit, page] = queryKey;
@@ -11,9 +12,7 @@ const getBanners = async ({ queryKey }: QueryFunctionContext<[string, string, nu
 	}
 
 	const { data } =
-		await HttpService.get<ICommonTypes.IApiResponse<{ banners: ICatalougeTypes.IBanner[] }>>(
-			url
-		);
+		await HttpService.get<IApiResponse<{ banners: ICatalougeTypes.IBanner[] }>>(url);
 
 	return data;
 };

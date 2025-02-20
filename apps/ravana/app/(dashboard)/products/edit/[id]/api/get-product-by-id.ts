@@ -1,12 +1,13 @@
 import { QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 const getProductById = async ({ queryKey }: QueryFunctionContext<[string, string]>) => {
 	const [_key, _params] = queryKey;
-	const { data } = await HttpService.get<
-		ICommonTypes.IApiResponse<{ product: ICatalougeTypes.IProduct }>
-	>(`${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${_params}`);
+	const { data } = await HttpService.get<IApiResponse<{ product: ICatalougeTypes.IProduct }>>(
+		`${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${_params}`
+	);
 	return data;
 };
 

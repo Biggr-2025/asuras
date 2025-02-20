@@ -5,6 +5,7 @@ import { z } from 'zod';
 
 import { ApiEndpoints } from '../../../core/primitives';
 import { safeActionClient } from '../../../core/services';
+import { IApiResponse, IsUserRegisteredInterface } from '../../../types';
 
 const schema = z.object({
 	mobileNumber: z
@@ -27,11 +28,10 @@ const getOtpAction = safeActionClient.schema(schema).action(async ({ parsedInput
 				msg: 'Failed to check user registration.',
 				data: null,
 				statusCode: response.status,
-			} as ICommonTypes.IApiResponse<null>;
+			} as IApiResponse<null>;
 		}
 
-		const data =
-			(await response.json()) as ICommonTypes.IApiResponse<IAuthTypes.IsUserRegisteredInterface>;
+		const data = (await response.json()) as IApiResponse<IsUserRegisteredInterface>;
 
 		if (data?.status === 'SUCCESS' && data?.data?.isUser && data?.data?.role === 'ADMIN') {
 			try {
@@ -51,9 +51,9 @@ const getOtpAction = safeActionClient.schema(schema).action(async ({ parsedInput
 						msg: 'Failed to check user registration.',
 						data: null,
 						statusCode: response.status,
-					} as ICommonTypes.IApiResponse<null>;
+					} as IApiResponse<null>;
 				}
-				const otpData = (await otpResponse.json()) as ICommonTypes.IApiResponse<{
+				const otpData = (await otpResponse.json()) as IApiResponse<{
 					type: 'success';
 				}>;
 				return otpData;
@@ -64,7 +64,7 @@ const getOtpAction = safeActionClient.schema(schema).action(async ({ parsedInput
 					msg: 'A network error occurred. Please check your connection and try again.',
 					data: null,
 					statusCode: 500,
-				} as ICommonTypes.IApiResponse<null>;
+				} as IApiResponse<null>;
 			}
 		} else {
 			return {
@@ -72,7 +72,7 @@ const getOtpAction = safeActionClient.schema(schema).action(async ({ parsedInput
 				msg: 'Only registered users can log in.',
 				data: null,
 				statusCode: 401,
-			} as ICommonTypes.IApiResponse<null>;
+			} as IApiResponse<null>;
 		}
 	} catch (err) {
 		console.error(err);
@@ -81,7 +81,7 @@ const getOtpAction = safeActionClient.schema(schema).action(async ({ parsedInput
 			msg: 'A network error occurred. Please check your connection and try again.',
 			data: null,
 			statusCode: 500,
-		} as ICommonTypes.IApiResponse<null>;
+		} as IApiResponse<null>;
 	}
 });
 

@@ -29,21 +29,22 @@ export function useProductForm(type: 'ADD' | 'EDIT') {
 	useEffect(() => {
 		if (type === 'EDIT' && params?.id) {
 			form.reset({
-				title: productData?.title || '',
-				description: productData?.description || '',
-				quantity: productData?.quantity?.toString() || '',
-				packQuantity: productData?.packQuantity?.toString() || '',
-				mrp: productData?.mrp?.toString() || '',
-				price: productData?.price?.toString() || '',
-				gstInPercent: productData?.gstInPercent?.toString() || '',
-				hsn: productData?.hsn || '',
-				brand: productData?.brand || '',
-				category: productData?.category || '',
-				subcategory: productData?.subcategory || '',
-				colour: productData?.colour || '',
-				size: productData?.size || '',
+				title: productData?.title ?? '',
+				description: productData?.description ?? '',
+				quantity: productData?.quantity?.toString() ?? '',
+				packQuantity: productData?.packQuantity?.toString() ?? '',
+				mrp: productData?.mrp?.toString() ?? '',
+				price: productData?.price?.toString() ?? '',
+				gstInPercent: productData?.gstInPercent?.toString() ?? '',
+				hsn: productData?.hsn ?? '',
+				brand: productData?.brand ?? '',
+				category: productData?.category ?? '',
+				subcategory: productData?.subcategory ?? '',
+				colour: productData?.colour ?? '',
+				size: productData?.size ?? '',
 				active: productData?.active?.toString() || 'true',
-				barCodeNo: productData?.barCodeNo || '',
+				barCodeNo: productData?.barCodeNo ?? '',
+				department: productData?.department ?? '',
 			});
 		}
 	}, [form, params?.id, productData, type]);

@@ -1,5 +1,6 @@
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
+import { IApiResponse } from '../../../types';
 import { HttpService } from '../../services';
 
 const getStoresProductsList = async ({
@@ -17,13 +18,14 @@ const getStoresProductsList = async ({
 	// }
 
 	const { data } =
-		await HttpService.get<
-			ICommonTypes.IApiResponse<{ storeProducts: ICatalougeTypes.IStoreProducts[] }>
-		>(url);
+		await HttpService.get<IApiResponse<{ storeProducts: ICatalougeTypes.IStoreProducts[] }>>(
+			url
+		);
 
 	return data;
 };
 
+// eslint-disable-next-line max-params
 export function useGetStoresProductsList(
 	searchTerm: string,
 	apiKey: string,

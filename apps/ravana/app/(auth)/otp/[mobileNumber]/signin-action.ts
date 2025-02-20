@@ -5,6 +5,7 @@ import { z } from 'zod';
 
 import { ApiEndpoints } from '../../../../core/primitives';
 import { safeActionClient } from '../../../../core/services';
+import { IApiResponse, ILoginInterface } from '../../../../types';
 
 const schema = z.object({
 	mobileNumber: z
@@ -39,24 +40,23 @@ const signinAction = safeActionClient.schema(schema).action(async ({ parsedInput
 				msg: 'Unable to verify OTP. Please try again.',
 				data: null,
 				statusCode: response.status,
-			} as ICommonTypes.IApiResponse<null>;
+			} as IApiResponse<null>;
 		}
-		const otpData =
-			(await response.json()) as ICommonTypes.IApiResponse<IAuthTypes.ILoginInterface>;
+		const otpData = (await response.json()) as IApiResponse<ILoginInterface>;
 		if (otpData.status === 'SUCCESS') {
 			return {
 				status: 'SUCCESS',
 				msg: '',
 				data: otpData?.data,
 				statusCode: response.status,
-			} as ICommonTypes.IApiResponse<IAuthTypes.ILoginInterface>;
+			} as IApiResponse<ILoginInterface>;
 		} else {
 			return {
 				status: 'ERROR',
 				msg: 'Unable to signin. Please try again.',
 				data: null,
 				statusCode: response.status,
-			} as ICommonTypes.IApiResponse<null>;
+			} as IApiResponse<null>;
 		}
 	} catch (err) {
 		console.error(err);
@@ -65,7 +65,7 @@ const signinAction = safeActionClient.schema(schema).action(async ({ parsedInput
 			msg: 'A network error occurred. Please check your connection and try again.',
 			data: null,
 			statusCode: 500,
-		} as ICommonTypes.IApiResponse<null>;
+		} as IApiResponse<null>;
 	}
 });
 

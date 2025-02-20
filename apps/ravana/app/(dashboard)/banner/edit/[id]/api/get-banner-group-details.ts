@@ -1,14 +1,15 @@
 import { QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 const getBannerGroupDetails = async ({
 	queryKey,
 }: QueryFunctionContext<[string, string, string]>) => {
 	const [_key, groupId, bannerId] = queryKey;
-	const { data } = await HttpService.get<
-		ICommonTypes.IApiResponse<{ group: ICatalougeTypes.IBannerImage }>
-	>(`${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${bannerId}/${groupId}`);
+	const { data } = await HttpService.get<IApiResponse<{ group: ICatalougeTypes.IBannerImage }>>(
+		`${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${bannerId}/${groupId}`
+	);
 	return data;
 };
 

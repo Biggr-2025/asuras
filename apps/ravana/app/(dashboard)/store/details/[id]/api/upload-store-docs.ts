@@ -2,10 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../core/services';
+import { IApiResponse } from '../../../../../../types';
 
 const uploadStoreDocs = async (payload: FormData, id: string) => {
 	try {
-		const { data } = await HttpService.patch<ICommonTypes.IApiResponse<any>>(
+		const { data } = await HttpService.patch<IApiResponse<any>>(
 			`${process.env.NEXT_PUBLIC_BASE_PATH}/store/uploadDocument/${id}`,
 			payload,
 			{

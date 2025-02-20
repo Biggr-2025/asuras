@@ -1,13 +1,15 @@
 import { ImagePlaceholder } from '@asuras/ui';
 import { CloudUpload, X } from 'lucide-react';
 
+import { IFileWithPreview } from '../../../../../../../../types';
+
 export function BannerImageUploader({
 	files,
 	getRootProps,
 	getInputProps,
 	handleClear,
 }: {
-	files: ICommonTypes.IFileWithPreview[];
+	files: IFileWithPreview[];
 	getRootProps: () => any;
 	getInputProps: () => any;
 	handleClear: (event: React.MouseEvent) => void;
