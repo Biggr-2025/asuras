@@ -30,7 +30,7 @@ export function UtilsSearch({
 	const [open, setOpen] = useState(false);
 	const { data, isPending } = useGetProductUtilsList({
 		apiKey: 'productUtil/list',
-		type,
+		utilType: type,
 		searchTerm: searchValue,
 		active: 1,
 		page: 0,
