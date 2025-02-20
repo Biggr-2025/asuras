@@ -80,6 +80,7 @@ export {
 export { ImagePlaceholder } from './lib/image';
 export { FloatingInput } from './lib/input/floating-input';
 export { Input } from './lib/input/input';
+export { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from './lib/input-otp';
 export { Label } from './lib/label';
 export {
 	Menubar,

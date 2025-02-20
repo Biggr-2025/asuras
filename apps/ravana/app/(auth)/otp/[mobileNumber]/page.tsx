@@ -1,32 +1,25 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@asuras/ui';
+import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { ArrowLeft } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
+import { useAction } from 'next-safe-action/hooks';
 import { toast } from 'sonner';
 
 import { Routes } from '../../../../core/primitives/routes';
 import { useAppDispatch } from '../../../../core/store';
 import { authenticateUser } from '../../../../core/store/auth';
 import { closeModal, openModal } from '../../../../core/store/layout-reducer';
-import useOtpHook from './use-otp-hook';
+import { signinAction } from './signin-action';
 
 export default function Page() {
 	const params = useParams();
 	const dispatch = useAppDispatch();
 	const router = useRouter();
-	const {
-		otp,
-		otpRefs,
-		handleClick,
-		handleKeyDown,
-		handleOtpChange,
-		handleBack,
-		isExecuting,
-		result,
-	} = useOtpHook({
-		mobile: params?.mobileNumber as string,
-	});
+	const { execute, result, isExecuting } = useAction(signinAction);
+	const [otp, setOtp] = useState('');
 
 	useEffect(() => {
 		if (isExecuting) {
@@ -54,6 +47,17 @@ export default function Page() {
 		}
 	}, [dispatch, result, result.data, router]);
 
+	const handleBack = () => {
+		router.back();
+	};
+
+	const handleComplete = () => {
+		execute({
+			mobileNumber: params?.mobileNumber as string,
+			otp,
+		});
+	};
+
 	return (
 		<div>
 			<div onClick={handleBack} className="flex items-center gap-12">
@@ -69,21 +73,19 @@ export default function Page() {
 				<span className="text-black-1 font-medium">+91-{params?.mobileNumber}</span>
 			</div>
 			<div className="mt-24 flex gap-12">
-				{otp.map((_, i) => {
-					return (
-						<input
-							key={i}
-							ref={(input) => (otpRefs.current[i] = input) as any}
-							className="rounded-8 border-grey-divider text-24 leading-16 focus:ring-brand size-[52px] border px-12 text-center  font-medium outline-none transition
-   duration-300 ease-in-out focus:border-none focus:shadow-sm focus:outline-none focus:ring-2 focus:ring-opacity-90"
-							onChange={(e) => handleOtpChange(e, i)}
-							onKeyDown={(e) => handleKeyDown(e, i)}
-							value={(otpRefs.current[i]?.value as string) || ''}
-							onClick={(e) => handleClick(e, i)}
-							maxLength={1}
-						/>
-					);
-				})}
+				<InputOTP
+					value={otp}
+					onChange={(value) => setOtp(value)}
+					maxLength={6}
+					pattern={REGEXP_ONLY_DIGITS}
+					onComplete={handleComplete}
+				>
+					<InputOTPGroup>
+						{Array.from({ length: 6 }, (_, index) => {
+							return <InputOTPSlot key={index} index={index} />;
+						})}
+					</InputOTPGroup>
+				</InputOTP>
 			</div>
 		</div>
 	);
