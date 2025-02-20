@@ -28,7 +28,7 @@ export function UtilsSearch({
 	const [searchValue, onSearchValueChange] = useState('');
 	const [selectedValue, onSelectedValueChange] = useState<ICatalougeTypes.ICategory | null>(null);
 	const [open, setOpen] = useState(false);
-	const { data, isPending, refetch } = useGetProductUtilsList({
+	const { data, isPending } = useGetProductUtilsList({
 		apiKey: 'productUtil/list',
 		type,
 		searchTerm: searchValue,

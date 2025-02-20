@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 
 import { useGetBannerGroupDetails } from '../../../api/get-banner-group-details';
 import ProductUtils from '../product-utils';
@@ -19,17 +19,19 @@ export default function ProductTypes({
 		'brands' | 'categories' | 'departments' | 'productIds' | 'subCategories' | null
 	>(null);
 
-	useSelectType({ setShowSelect: setShowSelect, bannerGroup: bannerGroup });
+	useSelectType({ setShowSelect, bannerGroup });
+
+	const componentMap: Record<string, JSX.Element> = {
+		brands: <ProductUtils type="BRAND" bannerId={bannerId} activeId={activeId} />,
+		departments: <ProductUtils type="DEPARTMENT" bannerId={bannerId} activeId={activeId} />,
+		categories: <ProductUtils type="CATEGORY" bannerId={bannerId} activeId={activeId} />,
+		subCategories: <ProductUtils type="SUBCATEGORY" bannerId={bannerId} activeId={activeId} />,
+		productIds: <ProductsList bannerId={bannerId} activeId={activeId} />,
+	};
 
 	return (
 		<div>
-			{!showSelect && <PickType setShowSelect={setShowSelect} />}
-			{showSelect === 'brands' && (
-				<ProductUtils bannerId={bannerId} activeId={activeId as string} />
-			)}
-			{showSelect === 'productIds' && (
-				<ProductsList bannerId={bannerId} activeId={activeId as string} />
-			)}
+			{!showSelect ? <PickType setShowSelect={setShowSelect} /> : componentMap[showSelect]}
 		</div>
 	);
 }

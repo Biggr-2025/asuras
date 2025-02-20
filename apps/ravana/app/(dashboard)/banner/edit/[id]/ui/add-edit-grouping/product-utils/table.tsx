@@ -2,16 +2,36 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
-import { columns } from './columns';
+import { useUpdateBannerGroupProducts } from '../../../api/update-banner-group-products';
+import { tableColumns } from './columns';
 import { DraggableRow } from './draggable-row';
+import { IBannerGroup } from './index';
 
 export const TableComponent = ({
 	tableData,
 	rowIds,
+	bannerId,
+	activeId,
+	groupKey,
+	refetch,
 }: {
 	tableData: { id: string; name: string }[];
 	rowIds: string[];
+	bannerId: string;
+	activeId: string;
+	groupKey: keyof IBannerGroup;
+	refetch: () => void;
 }) => {
+	const { mutateAsync: updateGroupItems, isPending } = useUpdateBannerGroupProducts(bannerId);
+	const columns = tableColumns({
+		updateGroupItems,
+		isPending,
+		activeId,
+		tableData,
+		groupKey,
+		refetch,
+	});
+
 	const table = useReactTable({
 		data: tableData,
 		columns,

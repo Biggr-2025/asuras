@@ -17,39 +17,54 @@ import { useGetBannerGroupDetails } from '../../../api/get-banner-group-details'
 import { useUpdateBannerGroupProducts } from '../../../api/update-banner-group-products';
 import { TableComponent } from './table';
 
-export default function ProductUtils({
-	bannerId,
-	activeId,
-}: {
+interface ProductUtilsProps {
 	bannerId: string;
 	activeId: string;
-}) {
+	type: 'BRAND' | 'DEPARTMENT' | 'CATEGORY' | 'SUBCATEGORY';
+}
+
+export interface IBannerGroup {
+	brands?: string[];
+	departments?: string[];
+	categories?: string[];
+	subCategories?: string[];
+}
+
+const typeToKeyMap: Record<ProductUtilsProps['type'], keyof IBannerGroup> = {
+	BRAND: 'brands',
+	DEPARTMENT: 'departments',
+	CATEGORY: 'categories',
+	SUBCATEGORY: 'subCategories',
+};
+
+export default function ProductUtils({ bannerId, activeId, type }: ProductUtilsProps) {
 	const { data: bannerData, refetch } = useGetBannerGroupDetails(activeId, bannerId);
-	const bannerGroup = useMemo(() => {
-		return bannerData?.data?.group || ({} as ICatalougeTypes.IBannerImage);
-	}, [bannerData?.data?.group]);
 	const { mutateAsync: updateGroupImageProducts } = useUpdateBannerGroupProducts(bannerId);
+
+	const bannerGroup: IBannerGroup = useMemo(() => bannerData?.data?.group || {}, [bannerData]);
+
+	const groupKey = typeToKeyMap[type];
+
 	const [names, setNames] = useState<{ id: string; name: string }[]>([]);
 
 	useEffect(() => {
-		if (bannerGroup) {
-			const tableData = bannerGroup.brands?.map((brand, index) => ({
-				id: String(index),
-				name: brand,
-			}));
-			setNames(tableData);
-		}
-	}, [bannerGroup]);
+		const items = (bannerGroup[groupKey] || []).map((name, index) => ({
+			id: String(index),
+			name,
+		}));
+		setNames(items);
+	}, [bannerGroup, groupKey]);
 
-	const handleUtil = async (product: ICatalougeTypes.ICategory) => {
-		const payload = {
-			brands: [...bannerGroup.brands, product.name],
+	const handleUtil = async (product: { name: string }) => {
+		const updatedItems = [...(bannerGroup[groupKey] || []), product.name];
+
+		const payload: Partial<IBannerGroup> & { bannerGroupId: string } = {
 			bannerGroupId: activeId,
+			[groupKey]: updatedItems,
 		};
+
 		const response = await updateGroupImageProducts(payload);
-		if (response.status === 'SUCCESS') {
-			refetch();
-		}
+		if (response.status === 'SUCCESS') refetch();
 	};
 
 	const sensors = useSensors(
@@ -60,20 +75,19 @@ export default function ProductUtils({
 
 	const rowIds = names.map(({ name }) => name);
 
-	function handleDragEnd(event: DragEndEvent) {
+	const handleDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event;
-
 		if (!active || !over || active.id === over.id) return;
 
 		setNames((prevNames) => {
 			const oldIndex = prevNames.findIndex((item) => item.id === active.id);
 			const newIndex = prevNames.findIndex((item) => item.id === over.id);
 
-			if (oldIndex === -1 || newIndex === -1) return prevNames;
-
-			return arrayMove(prevNames, oldIndex, newIndex);
+			return oldIndex !== -1 && newIndex !== -1
+				? arrayMove(prevNames, oldIndex, newIndex)
+				: prevNames;
 		});
-	}
+	};
 
 	return (
 		<DndContext
@@ -83,10 +97,15 @@ export default function ProductUtils({
 			sensors={sensors}
 		>
 			<div className="p-16">
-				<div>
-					<UtilsSearch type="BRAND" handleUtil={handleUtil} />
-				</div>
-				<TableComponent tableData={names} rowIds={rowIds} />
+				<UtilsSearch type={type} handleUtil={handleUtil} />
+				<TableComponent
+					bannerId={bannerId}
+					activeId={activeId}
+					tableData={names}
+					rowIds={rowIds}
+					groupKey={groupKey}
+					refetch={refetch}
+				/>
 			</div>
 		</DndContext>
 	);
