@@ -43,6 +43,7 @@ export function useProductForm(type: 'ADD' | 'EDIT') {
 				colour: productData?.colour || '',
 				size: productData?.size || '',
 				active: productData?.active?.toString() || 'true',
+				barCodeNo: productData?.barCodeNo || '',
 			});
 		}
 	}, [form, params?.id, productData, type]);

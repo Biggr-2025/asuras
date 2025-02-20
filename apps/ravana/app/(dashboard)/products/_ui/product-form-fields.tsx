@@ -24,6 +24,7 @@ export function ProductFormFields({
 			<FormInput name="hsn" label="HSN" form={form} />
 			<FormInput name="colour" label="Colour" form={form} />
 			<FormInput name="size" label="Size" form={form} />
+			<FormInput name="barCodeNo" label="Barcode Number" form={form} />
 			<FormSelectDropdown
 				name="department"
 				label="Department"
