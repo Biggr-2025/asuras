@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams, useRouter } from 'next/navigation';
 
 import { Routes } from '../../../../core/primitives';
-import { useCreateProduct } from '../add/api';
-import { useGetProductById, useUpdateProduct } from '../edit/[id]/api';
+import useCreateProduct from '../add/_api/create-product';
+import { useGetProductById, useUpdateProduct } from '../edit/[id]/_api';
 import { IFormData, schema } from './schema';
 
 export function useProductForm(type: 'ADD' | 'EDIT') {

@@ -30,13 +30,10 @@ interface FormSelectProps {
 
 export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectProps) {
 	const [value, setValue] = useState('');
-
 	const department = form.watch('department');
 	const category = form.watch('category');
-
 	const dependentField =
 		paramKey === 'CATEGORY' ? department : paramKey === 'SUBCATEGORY' ? category : undefined;
-
 	const { data, refetch } = useGetProductUtilsList({
 		apiKey: 'productUtil/list',
 		type: paramKey,
@@ -49,6 +46,7 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 		category: paramKey === 'SUBCATEGORY' ? category : undefined,
 		enabled: paramKey === 'DEPARTMENT' || paramKey === 'BRAND' || !!dependentField,
 	});
+
 	useEffect(() => {
 		if (dependentField) {
 			refetch();
@@ -61,8 +59,6 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 			name={name}
 			key={name}
 			render={({ field }) => {
-				console.log(field);
-
 				return (
 					<FormItem className="flex flex-col">
 						<FormLabel>{label}</FormLabel>

@@ -4,26 +4,26 @@ import { Spinner, Tabs, TabsContent, TabsList, TabsTrigger } from '@asuras/ui';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-import { EditProductProvider } from './context/edit-product';
+import { EditProductProvider } from './_context/edit-product';
 
 const ProductForm = dynamic(() => import('../../_ui/form').then((mod) => mod.ProductForm), {
 	loading: () => <Spinner />,
 	ssr: false,
 });
 
-const AddEditAttributes = dynamic(() => import('./ui/attributes'), {
+const AddEditAttributes = dynamic(() => import('./_ui/attributes'), {
 	loading: () => <Spinner />,
 });
 
-const ImagesContainer = dynamic(() => import('./ui/upload-images'), {
+const ImagesContainer = dynamic(() => import('./_ui/upload-images'), {
 	loading: () => <Spinner />,
 });
 
-const Varaints = dynamic(() => import('./ui/variants'), {
+const Varaints = dynamic(() => import('./_ui/variants'), {
 	loading: () => <Spinner />,
 });
 
-const Tags = dynamic(() => import('./ui/tags/tags'), {
+const Tags = dynamic(() => import('./_ui/tags/tags'), {
 	loading: () => <Spinner />,
 });
 
