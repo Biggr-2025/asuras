@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Accordion, Spinner } from '@asuras/ui';
 
+import { IStoreDetails } from '../../../../../../types';
 import { useGetStoreDetails } from '../api/get-store-details';
 import StoreUpload from './store-upload';
 
 export default function StoreDetails({ id }: { id: string }) {
 	const { data, isPending } = useGetStoreDetails(id);
-	const details = data?.data?.store || ({} as IStoreTypes.IStoreDetails);
+	const details = data?.data?.store || ({} as IStoreDetails);
 	const [show, setShow] = useState<string>('LOGO');
 
 	if (isPending) {

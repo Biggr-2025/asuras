@@ -14,6 +14,7 @@ import { gstValidator, panValidator, phoneValidator } from '@asuras/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+import { IStoreDetails } from '../../../../../../types';
 import { useGetStoreDetails } from '../api/get-store-details';
 import { useUpdateBusinessDetails } from '../api/update-business-details';
 
@@ -40,7 +41,7 @@ type IFormData = z.infer<typeof schema>;
 
 export default function BusinessDetails({ id }: { id: string }) {
 	const { data, refetch, isPending } = useGetStoreDetails(id);
-	const details = data?.data?.store || ({} as IStoreTypes.IStoreDetails);
+	const details = data?.data?.store || ({} as IStoreDetails);
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {

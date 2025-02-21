@@ -14,6 +14,7 @@ import { phoneValidator } from '@asuras/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+import { IStoreDetails } from '../../../../../../types';
 import { useGetStoreDetails } from '../api/get-store-details';
 import { useUpdateBasicDetails } from '../api/update-basic-detail';
 
@@ -31,7 +32,7 @@ type IFormData = z.infer<typeof schema>;
 
 export default function BasicDetails({ id }: { id: string }) {
 	const { data, refetch, isPending } = useGetStoreDetails(id);
-	const details = data?.data?.store || ({} as IStoreTypes.IStoreDetails);
+	const details = data?.data?.store || ({} as IStoreDetails);
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
