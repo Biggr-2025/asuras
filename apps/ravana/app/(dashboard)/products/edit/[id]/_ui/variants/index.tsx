@@ -28,7 +28,7 @@ export default function Variants() {
 	}
 
 	return (
-		<div className="rounded-12 shadow-card1 mt-16 bg-white">
+		<div className="rounded-12 shadow-card1 mt-16 bg-white p-16">
 			<div className="flex items-center justify-between border-b px-16 py-8">
 				<div className="text-16 font-semibold">Variants List</div>
 				<ProductSearch handleProduct={handleProduct} />
