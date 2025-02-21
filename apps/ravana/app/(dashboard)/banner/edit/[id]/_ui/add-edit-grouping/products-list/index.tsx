@@ -46,7 +46,7 @@ import { queryClient } from '../../../../../../../../core/services/providers';
 import { ProductSearch } from '../../../../../../../../core/ui';
 import { IApiResponse, IBannerImage, IProduct } from '../../../../../../../../types';
 import { useGetBannerGroupDetails } from '../../../_api/get-banner-group-details';
-import { useUpdateBannerGroupProducts } from '../../../_api/update-banner-group-products';
+import { useUpdateBannerGroupProducts } from '../_api/update-banner-group-products';
 
 const RowDragHandleCell = ({ rowId }: { rowId: string }) => {
 	const { attributes, listeners } = useSortable({

@@ -1,8 +1,10 @@
+import { getCustomError } from '@asuras/utils';
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { toast } from 'sonner';
 
-import { HttpService } from '../../../../../../core/services';
-import { IApiResponse, IBannerDetails } from '../../../../../../types';
+import { HttpService } from '../../../../../../../../core/services';
+import { IApiResponse, IBannerDetails } from '../../../../../../../../types';
 
 const updateBannerGroupImage = async (id: string, payload: FormData) => {
 	try {
@@ -12,7 +14,12 @@ const updateBannerGroupImage = async (id: string, payload: FormData) => {
 		);
 		return data;
 	} catch (err) {
-		throw new Error('Network Error. Please try again.');
+		if (axios.isAxiosError(err)) {
+			const customError = getCustomError(err.response);
+			throw customError.customMessage;
+		} else {
+			throw 'An unexpected error occurred.';
+		}
 	}
 };
 

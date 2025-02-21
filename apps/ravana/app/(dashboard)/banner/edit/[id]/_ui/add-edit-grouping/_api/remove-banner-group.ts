@@ -1,8 +1,10 @@
+import { getCustomError } from '@asuras/utils';
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { toast } from 'sonner';
 
-import { HttpService } from '../../../../../../core/services';
-import { IApiResponse } from '../../../../../../types';
+import { HttpService } from '../../../../../../../../core/services';
+import { IApiResponse } from '../../../../../../../../types';
 
 interface IPayload {
 	bannerGroupId: string;
@@ -16,7 +18,12 @@ const deleteBannerGroup = async (id: string, payload: IPayload) => {
 		);
 		return data;
 	} catch (err) {
-		throw new Error('Network Error. Please try again.');
+		if (axios.isAxiosError(err)) {
+			const customError = getCustomError(err.response);
+			throw customError.customMessage;
+		} else {
+			throw 'An unexpected error occurred.';
+		}
 	}
 };
 
