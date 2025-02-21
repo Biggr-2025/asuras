@@ -4,8 +4,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
 import { Routes } from '../../../../../../core/primitives';
+import { IProduct } from '../../../../../../types';
 
-export function getColumns(): ColumnDef<ICatalougeTypes.IProduct>[] {
+export function getColumns(): ColumnDef<IProduct>[] {
 	return [
 		{
 			accessorKey: 'title',

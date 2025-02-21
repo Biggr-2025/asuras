@@ -1,6 +1,7 @@
 import { AccordionContent, AccordionItem, AccordionTrigger, Button } from '@asuras/ui';
 import { Edit, PlusIcon } from 'lucide-react';
 
+import { ISpecifications } from '../../../../../../../types';
 import { useEditProduct } from '../../_context/edit-product';
 import DeleteDialog from './delete-dialog';
 
@@ -14,7 +15,7 @@ export default function Attributes({
 	id: string;
 	name: string;
 	title: string;
-	data: ICatalougeTypes.ISpecifications[];
+	data: ISpecifications[];
 	refetch: () => void;
 }) {
 	const { setAttributeKey, setAttributeName, toggleForm, setType, setAttribute } =
@@ -28,7 +29,7 @@ export default function Attributes({
 		setType(null);
 	};
 
-	const handleEdit = (attribute: ICatalougeTypes.ISpecifications) => {
+	const handleEdit = (attribute: ISpecifications) => {
 		toggleForm(true);
 		setType('EDIT');
 		setAttribute(attribute);

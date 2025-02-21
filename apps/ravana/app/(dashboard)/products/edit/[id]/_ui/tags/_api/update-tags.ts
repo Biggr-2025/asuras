@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../../../core/services';
-import { IApiResponse } from '../../../../../../../../types';
+import { IApiResponse, IProduct } from '../../../../../../../../types';
 
 interface IPayload {
 	tags: string[];
@@ -12,9 +12,10 @@ interface IPayload {
 
 const updateProductTags = async (id: string, payload: IPayload) => {
 	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ product: ICatalougeTypes.IProduct }>
-		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/product/addTags/${id}`, payload);
+		const { data } = await HttpService.patch<IApiResponse<{ product: IProduct }>>(
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/product/addTags/${id}`,
+			payload
+		);
 		return data;
 	} catch (err) {
 		if (axios.isAxiosError(err)) {

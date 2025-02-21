@@ -12,6 +12,7 @@ import { cn } from '@asuras/utils';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Check } from 'lucide-react';
 
+import { IProduct } from '../../types/catalouge';
 import { useGetProductsList } from '../api';
 
 export function ProductSearch({
@@ -19,17 +20,17 @@ export function ProductSearch({
 	className,
 	inputClasses,
 }: {
-	handleProduct: (product: ICatalougeTypes.IProduct) => void;
+	handleProduct: (product: IProduct) => void;
 	className?: string;
 	inputClasses?: string;
 }) {
 	const [searchValue, onSearchValueChange] = useState('');
-	const [selectedValue, onSelectedValueChange] = useState<ICatalougeTypes.IProduct | null>(null);
+	const [selectedValue, onSelectedValueChange] = useState<IProduct | null>(null);
 	const [open, setOpen] = useState(false);
 	const { data, isPending } = useGetProductsList(searchValue, 'products/search', 1, 0, 10, 0);
-	const productsData = data?.data?.products || ([] as ICatalougeTypes.IProduct[]);
+	const productsData = data?.data?.products || ([] as IProduct[]);
 
-	const onSelect = async (product: ICatalougeTypes.IProduct) => {
+	const onSelect = async (product: IProduct) => {
 		onSelectedValueChange(product);
 		await handleProduct(product);
 		setOpen(false);

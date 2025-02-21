@@ -5,11 +5,12 @@ import { useParams } from 'next/navigation';
 
 import { Routes } from '../../../../../core/primitives';
 import { StoreListingTable } from '../../../../../core/ui';
+import { IStore } from '../../../../../types';
 
 export default function ColumnsListing() {
 	const params = useParams();
 
-	const columns: ColumnDef<ICatalougeTypes.IStore>[] = useMemo(
+	const columns: ColumnDef<IStore>[] = useMemo(
 		() => [
 			{
 				accessorKey: 'name',

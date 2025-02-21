@@ -2,13 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { ColumnDef, getCoreRowModel, useReactTable, VisibilityState } from '@tanstack/react-table';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
+import { IProduct } from '../../../../../../types';
 import { useProductListingContext } from '../../_context';
 import { getColumns } from './columns';
 import ProductPagination from './pagination';
 import ProductTable from './table';
 
 export default function ListingTable() {
-	const columns: ColumnDef<ICatalougeTypes.IProduct>[] = useMemo(() => getColumns(), []);
+	const columns: ColumnDef<IProduct>[] = useMemo(() => getColumns(), []);
 	const {
 		data,
 		isFetching,

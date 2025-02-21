@@ -4,6 +4,7 @@ import { Spinner } from '@asuras/ui';
 import { useParams } from 'next/navigation';
 
 import { ProductSearch } from '../../../../../../../core/ui';
+import { IProduct } from '../../../../../../../types';
 import { useGetProductById, useUpdateProductVariants } from '../../_api';
 import VariantListing from './listing';
 
@@ -13,7 +14,7 @@ export default function Variants() {
 	const variantIds = data?.data?.product?.productVariantIds || [];
 	const { mutateAsync: updateProductVariants } = useUpdateProductVariants(params?.id as string);
 
-	const handleProduct = async (product: ICatalougeTypes.IProduct) => {
+	const handleProduct = async (product: IProduct) => {
 		const payload = {
 			productVariantIds: [...variantIds, product.productId],
 		};

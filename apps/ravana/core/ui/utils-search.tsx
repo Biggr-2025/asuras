@@ -12,6 +12,7 @@ import { cn } from '@asuras/utils';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Check } from 'lucide-react';
 
+import { ICategory } from '../../types/catalouge';
 import { useGetProductUtilsList } from '../api/app-utils/product-utils';
 
 export function UtilsSearch({
@@ -20,13 +21,13 @@ export function UtilsSearch({
 	inputClasses,
 	type,
 }: {
-	handleUtil: (product: ICatalougeTypes.ICategory) => void;
+	handleUtil: (product: ICategory) => void;
 	className?: string;
 	inputClasses?: string;
 	type: string;
 }) {
 	const [searchValue, onSearchValueChange] = useState('');
-	const [selectedValue, onSelectedValueChange] = useState<ICatalougeTypes.ICategory | null>(null);
+	const [selectedValue, onSelectedValueChange] = useState<ICategory | null>(null);
 	const [open, setOpen] = useState(false);
 	const { data, isPending } = useGetProductUtilsList({
 		apiKey: 'productUtil/list',
@@ -38,7 +39,7 @@ export function UtilsSearch({
 		count: 1,
 	});
 
-	const onSelect = async (product: ICatalougeTypes.ICategory) => {
+	const onSelect = async (product: ICategory) => {
 		onSelectedValueChange(product);
 		await handleUtil(product);
 		setOpen(false);

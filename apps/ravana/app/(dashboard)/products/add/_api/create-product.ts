@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 
 import { ApiEndpoints } from '../../../../../core/primitives';
 import { HttpService } from '../../../../../core/services';
-import { IApiResponse } from '../../../../../types';
+import { IApiResponse, IProduct } from '../../../../../types';
 
 interface IPayload {
 	title: string;
@@ -26,9 +26,10 @@ interface IPayload {
 
 const createProduct = async (payload: IPayload) => {
 	try {
-		const { data } = await HttpService.post<
-			IApiResponse<{ product: ICatalougeTypes.IProduct }>
-		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.CreateProduct}`, payload);
+		const { data } = await HttpService.post<IApiResponse<{ product: IProduct }>>(
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.CreateProduct}`,
+			payload
+		);
 		return data;
 	} catch (err) {
 		if (axios.isAxiosError(err)) {

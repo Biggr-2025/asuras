@@ -12,9 +12,10 @@ interface IPayload {
 
 const removeProductImage = async (id: string, payload: IPayload) => {
 	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ product: ICatalougeTypes.IProduct }>
-		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/product/removeImage/${id}`, payload);
+		const { data } = await HttpService.patch<IApiResponse<{ product: IProduct }>>(
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/product/removeImage/${id}`,
+			payload
+		);
 		return data;
 	} catch (err) {
 		if (axios.isAxiosError(err)) {

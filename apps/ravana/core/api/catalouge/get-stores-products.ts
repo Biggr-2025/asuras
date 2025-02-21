@@ -1,6 +1,7 @@
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { IApiResponse } from '../../../types';
+import { IStoreProducts } from '../../../types/catalouge';
 import { HttpService } from '../../services';
 
 const getStoresProductsList = async ({
@@ -17,10 +18,7 @@ const getStoresProductsList = async ({
 	// 	url += `&active=1`;
 	// }
 
-	const { data } =
-		await HttpService.get<IApiResponse<{ storeProducts: ICatalougeTypes.IStoreProducts[] }>>(
-			url
-		);
+	const { data } = await HttpService.get<IApiResponse<{ storeProducts: IStoreProducts[] }>>(url);
 
 	return data;
 };

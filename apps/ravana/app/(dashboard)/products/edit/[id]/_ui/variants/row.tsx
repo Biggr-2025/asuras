@@ -1,7 +1,9 @@
 import { TableCell, TableRow } from '@asuras/ui';
 import { flexRender, Row } from '@tanstack/react-table';
 
-export default function VariantTableRow({ row }: { row: Row<ICatalougeTypes.IProduct> }) {
+import { IProduct } from '../../../../../../../types';
+
+export default function VariantTableRow({ row }: { row: Row<IProduct> }) {
 	return (
 		<TableRow key={row.id}>
 			{row.getVisibleCells().map((cell) => (

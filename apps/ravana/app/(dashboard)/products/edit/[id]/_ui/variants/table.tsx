@@ -1,14 +1,15 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@asuras/ui';
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
+import { IProduct } from '../../../../../../../types';
 import VariantTableRow from './row';
 
 export default function VariantTable({
 	products,
 	columns,
 }: {
-	products: ICatalougeTypes.IProduct[];
-	columns: ColumnDef<ICatalougeTypes.IProduct>[];
+	products: IProduct[];
+	columns: ColumnDef<IProduct>[];
 }) {
 	const table = useReactTable({
 		data: products,

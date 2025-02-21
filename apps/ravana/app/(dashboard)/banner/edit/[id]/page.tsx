@@ -4,15 +4,15 @@ import { Spinner, Tabs, TabsContent, TabsList, TabsTrigger } from '@asuras/ui';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-const AddEditGrouping = dynamic(() => import('./ui/add-edit-grouping'), {
+const AddEditGrouping = dynamic(() => import('./_ui/add-edit-grouping'), {
 	loading: () => <Spinner />,
 });
 
-const UpdateIcon = dynamic(() => import('./ui/update-icon'), {
+const UpdateIcon = dynamic(() => import('./_ui/update-icon'), {
 	loading: () => <Spinner />,
 });
 
-const EditBanner = dynamic(() => import('./ui/edit-banner').then((mod) => mod.EditBanner), {
+const EditBanner = dynamic(() => import('./_ui/edit-banner').then((mod) => mod.EditBanner), {
 	loading: () => <Spinner />,
 	ssr: false,
 });

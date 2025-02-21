@@ -20,13 +20,14 @@ import {
 } from '@tanstack/react-table';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+import { IStoreProducts } from '../../../types/catalouge';
 import { useStoreProductsListingContext } from '../listing/context';
 
 export function StoreProductsListingTable({
 	columns,
 	id,
 }: {
-	columns: ColumnDef<ICatalougeTypes.IStoreProducts>[];
+	columns: ColumnDef<IStoreProducts>[];
 	id: string;
 }) {
 	const { data, isFetching, rowSelection, setRowSelection, pagination, setPagination } =
@@ -34,7 +35,7 @@ export function StoreProductsListingTable({
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
 	const table = useReactTable({
-		data: data as ICatalougeTypes.IStoreProducts[],
+		data: data as IStoreProducts[],
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 		onColumnVisibilityChange: setColumnVisibility,
@@ -60,9 +61,9 @@ export function StoreProductsListingTable({
 									{header.isPlaceholder
 										? null
 										: flexRender(
-											header.column.columnDef.header,
-											header.getContext()
-										)}
+												header.column.columnDef.header,
+												header.getContext()
+											)}
 								</TableHead>
 							))}
 						</TableRow>

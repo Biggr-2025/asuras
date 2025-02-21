@@ -3,6 +3,7 @@ import { Input, Label, Spinner } from '@asuras/ui';
 import { X } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
+import { IProduct } from '../../../../../../../types';
 import { useGetProductById } from '../../_api';
 import useUpdateProductTags from './_api/update-tags';
 
@@ -10,7 +11,7 @@ export default function Tags() {
 	const params = useParams();
 	const { data, refetch, isPending } = useGetProductById(params?.id as string);
 	const productData = useMemo(() => {
-		return data?.data?.product || ({} as ICatalougeTypes.IProduct);
+		return data?.data?.product || ({} as IProduct);
 	}, [data?.data?.product]);
 	const { mutateAsync: updateProductTags } = useUpdateProductTags(params?.id as string);
 	const [value, setValue] = useState('');

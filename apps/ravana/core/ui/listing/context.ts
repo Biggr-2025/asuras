@@ -1,10 +1,12 @@
 import { createContext, useContext } from 'react';
 import { PaginationState, RowSelectionState } from '@tanstack/react-table';
 
+import { IProduct, IStore, IStoreProducts } from '../../../types/catalouge';
+
 export type IProductListingContextType = {
 	value: string;
 	handleSearchChange: (value: string) => void;
-	data: ICatalougeTypes.IProduct[];
+	data: IProduct[];
 	isFetching: boolean;
 	rowSelection: RowSelectionState;
 	setRowSelection: (state: RowSelectionState) => void;
@@ -20,7 +22,7 @@ export type IProductListingContextType = {
 export type IStoreListingContextType = {
 	value: string;
 	handleSearchChange: (value: string) => void;
-	data: ICatalougeTypes.IStore[];
+	data: IStore[];
 	isFetching: boolean;
 	rowSelection: RowSelectionState;
 	setRowSelection: (state: RowSelectionState) => void;
@@ -32,7 +34,7 @@ export type IStoreListingContextType = {
 export type IStoreProductsListingContextType = {
 	value: string;
 	handleSearchChange: (value: string) => void;
-	data: ICatalougeTypes.IStoreProducts[];
+	data: IStoreProducts[];
 	isFetching: boolean;
 	rowSelection: RowSelectionState;
 	setRowSelection: (state: RowSelectionState) => void;
