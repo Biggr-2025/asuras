@@ -1,7 +1,9 @@
 'use client';
 
-import { ProductListing, ProductListingContent, ProductListingHeader } from '../../../../core/ui';
-import ColumnsListing from './ui/table';
+import { ProductListing } from './_ui/listing';
+import { ProductListingContent } from './_ui/listing/context';
+import { ProductListingHeader } from './_ui/listing/header';
+import ListingTable from './_ui/table';
 
 export default function Page() {
 	return (
@@ -10,7 +12,7 @@ export default function Page() {
 				<ProductListing showInactive={0} apiKey="products/list" className="">
 					<ProductListingHeader />
 					<ProductListingContent>
-						<ColumnsListing />
+						<ListingTable />
 					</ProductListingContent>
 				</ProductListing>
 			</div>
