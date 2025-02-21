@@ -1,17 +1,18 @@
 import { Accordion, Spinner } from '@asuras/ui';
 import { useParams } from 'next/navigation';
 
+import { IProduct, ISpecifications } from '../../../../../../../types';
 import { useGetProductById } from '../../_api';
 import { useEditProduct } from '../../_context/edit-product';
 import AttributeForm from './add-edit-attribute';
 import Attributes from './attributes';
 
-type IAttributeItem = [name: string, value: string, data: ICatalougeTypes.ISpecifications[]];
+type IAttributeItem = [name: string, value: string, data: ISpecifications[]];
 
 export default function AttributesList() {
 	const params = useParams();
 	const { data, isPending, refetch } = useGetProductById(params?.id as string);
-	const productData = data?.data?.product || ({} as ICatalougeTypes.IProduct);
+	const productData = data?.data?.product || ({} as IProduct);
 	const { showForm } = useEditProduct();
 
 	const attributes: IAttributeItem[] = [

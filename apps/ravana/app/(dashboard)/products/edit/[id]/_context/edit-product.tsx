@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
+import { ISpecifications } from '../../../../../../types';
+
 interface IContextType {
 	attributeKey: string | null;
 	setAttributeKey: (attributeKey: string) => void;
@@ -9,8 +11,8 @@ interface IContextType {
 	setType: (type: 'EDIT' | 'ADD' | null) => void;
 	showForm: boolean;
 	toggleForm: (showForm: boolean) => void;
-	attribute: ICatalougeTypes.ISpecifications | null;
-	setAttribute: (attribute: ICatalougeTypes.ISpecifications | null) => void;
+	attribute: ISpecifications | null;
+	setAttribute: (attribute: ISpecifications | null) => void;
 }
 
 const EditProductContext = createContext<IContextType | undefined>(undefined);
@@ -20,7 +22,7 @@ export const EditProductProvider = ({ children }: { children: ReactNode }) => {
 	const [attributeName, setAttributeName] = useState<string | null>(null);
 	const [type, setType] = useState<'EDIT' | 'ADD' | null>(null);
 	const [showForm, toggleForm] = useState(false);
-	const [attribute, setAttribute] = useState<ICatalougeTypes.ISpecifications | null>(null);
+	const [attribute, setAttribute] = useState<ISpecifications | null>(null);
 
 	return (
 		<EditProductContext.Provider

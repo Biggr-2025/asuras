@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 
 import { useGetProductUtilsList } from '../../../../../../core/api/app-utils/product-utils';
+import { ICategoryImage } from '../../../../../../types';
 import Item from './_ui/item';
 
 export default function Page() {
@@ -17,7 +18,7 @@ export default function Page() {
 		count: 0,
 		name: params?.name && decodeURIComponent(params?.name as string),
 	});
-	const imageData = data?.data?.list?.[0]?.image || ({} as ICatalougeTypes.ICategoryImage);
+	const imageData = data?.data?.list?.[0]?.image || ({} as ICategoryImage);
 
 	return (
 		<div className="h-full">
@@ -41,7 +42,7 @@ export default function Page() {
 							key={i.name}
 							item={i}
 							refetch={refetch}
-							defaultImage={imageData[i.type as keyof ICatalougeTypes.ICategoryImage]}
+							defaultImage={imageData[i.type as keyof ICategoryImage]}
 						/>
 					);
 				})}

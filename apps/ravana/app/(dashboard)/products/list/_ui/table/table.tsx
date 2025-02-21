@@ -7,35 +7,35 @@ import {
 	Table as TanstackTable,
 } from '@tanstack/react-table';
 
+import { IProduct } from '../../../../../../types';
+
 export default function ProductTable({
 	table,
 	columns,
 	isFetching,
 }: {
-	table: TanstackTable<ICatalougeTypes.IProduct>;
-	columns: ColumnDef<ICatalougeTypes.IProduct>[];
+	table: TanstackTable<IProduct>;
+	columns: ColumnDef<IProduct>[];
 	isFetching: boolean;
 }) {
 	return (
 		<div className="shadow-card1 rounded-8 bg-white p-12">
 			<Table>
 				<TableHeader>
-					{table
-						?.getHeaderGroups()
-						.map((headerGroup: HeaderGroup<ICatalougeTypes.IProduct>) => (
-							<TableRow key={headerGroup.id}>
-								{headerGroup.headers.map((header) => (
-									<TableHead className="text-14 p-16" key={header.id}>
-										{header.isPlaceholder
-											? null
-											: flexRender(
-													header.column.columnDef.header,
-													header.getContext()
-												)}
-									</TableHead>
-								))}
-							</TableRow>
-						))}
+					{table?.getHeaderGroups().map((headerGroup: HeaderGroup<IProduct>) => (
+						<TableRow key={headerGroup.id}>
+							{headerGroup.headers.map((header) => (
+								<TableHead className="text-14 p-16" key={header.id}>
+									{header.isPlaceholder
+										? null
+										: flexRender(
+												header.column.columnDef.header,
+												header.getContext()
+											)}
+								</TableHead>
+							))}
+						</TableRow>
+					))}
 				</TableHeader>
 				<TableBody>
 					{isFetching ? (
@@ -46,7 +46,7 @@ export default function ProductTable({
 							</TableCell>
 						</TableRow>
 					) : table?.getRowModel()?.rows.length ? (
-						table.getRowModel().rows.map((row: Row<ICatalougeTypes.IProduct>) => {
+						table.getRowModel().rows.map((row: Row<IProduct>) => {
 							return (
 								<TableRow key={row.id}>
 									{row.getVisibleCells().map((cell) => (

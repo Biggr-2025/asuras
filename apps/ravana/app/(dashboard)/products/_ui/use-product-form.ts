@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams, useRouter } from 'next/navigation';
 
 import { Routes } from '../../../../core/primitives';
+import { IProduct } from '../../../../types';
 import useCreateProduct from '../add/_api/create-product';
 import { useGetProductById, useUpdateProduct } from '../edit/[id]/_api';
 import { IFormData, schema } from './schema';
@@ -14,7 +15,7 @@ export function useProductForm(type: 'ADD' | 'EDIT') {
 	const { data, refetch } = useGetProductById(params?.id as string);
 
 	const productData = useMemo(() => {
-		return data?.data?.product || ({} as ICatalougeTypes.IProduct);
+		return data?.data?.product || ({} as IProduct);
 	}, [data?.data?.product]);
 
 	const { mutateAsync: createProduct, isPending } = useCreateProduct();

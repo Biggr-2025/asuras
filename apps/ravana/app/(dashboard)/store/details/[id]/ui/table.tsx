@@ -8,11 +8,12 @@ import { useParams } from 'next/navigation';
 
 import { Routes } from '../../../../../../core/primitives';
 import { StoreProductsListingTable } from '../../../../../../core/ui/listing-tables/store-products-listing';
+import { IStoreProducts } from '../../../../../../types';
 
 export default function ColumnsListing() {
 	const params = useParams();
 
-	const columns: ColumnDef<ICatalougeTypes.IStoreProducts>[] = useMemo(
+	const columns: ColumnDef<IStoreProducts>[] = useMemo(
 		() => [
 			{
 				accessorKey: 'title',
@@ -114,7 +115,7 @@ export default function ColumnsListing() {
 								href={`${Routes.EditStoreProduct}/${row.original.storeId}/${row.original.product.productId}?storeProductId=${row.original.storeProductId}`}
 							>
 								<PenIcon className="size-16 text-white" />
-								<span className="text-12  font-semibold text-white">
+								<span className="text-12 font-semibold text-white">
 									Update Product
 								</span>
 							</Link>

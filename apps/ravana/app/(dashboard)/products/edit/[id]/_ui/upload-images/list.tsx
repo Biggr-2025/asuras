@@ -4,10 +4,11 @@ import { ImagePlaceholder } from '@asuras/ui';
 import { cn } from '@asuras/utils';
 
 import { createFormDataForImage } from '../../../../../../../core/helpers';
+import { IProductImage } from '../../../../../../../types';
 import { useUpdateProductImage } from './_api/update-product-image';
 
 interface ImageListProps {
-	image: ICatalougeTypes.IProductImage;
+	image: IProductImage;
 	imageId: string | null;
 	refetch: () => void;
 	id: string;
@@ -26,7 +27,7 @@ export default function ImagesList({ image, imageId, refetch, id }: ImageListPro
 						key={item.name}
 						refetch={refetch}
 						item={item}
-						image={image[item.type as keyof ICatalougeTypes.IProductImage]}
+						image={image[item.type as keyof IProductImage]}
 						id={id}
 						imageId={imageId}
 					/>

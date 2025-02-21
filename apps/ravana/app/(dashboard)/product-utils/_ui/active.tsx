@@ -12,9 +12,10 @@ import {
 import { cn } from '@asuras/utils';
 
 import { useProductUtilsListContext } from '../../../../core/context/product-util';
+import { ICategory } from '../../../../types';
 import { useUpdateProductUtils } from '../_api/update-utils';
 
-export default function Status({ row, type }: { row: ICatalougeTypes.ICategory; type: string }) {
+export default function Status({ row, type }: { row: ICategory; type: string }) {
 	const { mutateAsync: updateProductUtils } = useUpdateProductUtils(row.name);
 	const { refetch } = useProductUtilsListContext();
 

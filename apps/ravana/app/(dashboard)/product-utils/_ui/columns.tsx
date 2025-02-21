@@ -4,11 +4,12 @@ import Link from 'next/link';
 
 import { Routes } from '../../../../core/primitives';
 import { ProductUtilsTable } from '../../../../core/ui/product-util/table';
+import { ICategory } from '../../../../types';
 import Status from './active';
 
 export default function ColumnsListing({ type }: { type: string }) {
-	const columns: ColumnDef<ICatalougeTypes.ICategory>[] = useMemo(() => {
-		const baseColumns: ColumnDef<ICatalougeTypes.ICategory>[] = [
+	const columns: ColumnDef<ICategory>[] = useMemo(() => {
+		const baseColumns: ColumnDef<ICategory>[] = [
 			{
 				accessorKey: 'index',
 				header: '#',

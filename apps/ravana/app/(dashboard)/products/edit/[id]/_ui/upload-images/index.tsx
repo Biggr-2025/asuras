@@ -12,6 +12,7 @@ import { PlusIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 
+import { IProductImage } from '../../../../../../../types';
 import { useGetProductById } from '../../_api';
 import ImageDeleteDialog from './delete-dialog';
 import ImagesList from './list';
@@ -29,7 +30,7 @@ export default function ImagesContainer() {
 	const [showSheet, setShowSheet] = useState(false);
 	const [imageId, setImageId] = useState<string | null>(null);
 
-	const getImageUrl = (image: ICatalougeTypes.IProductImage) => {
+	const getImageUrl = (image: IProductImage) => {
 		if (image.smallUrl && image.smallUrl !== '') {
 			return image.smallUrl;
 		} else if (image.mediumUrl && image.mediumUrl !== '') {

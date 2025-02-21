@@ -1,13 +1,13 @@
-import { original } from '@reduxjs/toolkit';
 import { ColumnDef } from '@tanstack/react-table';
 
+import { IProduct } from '../../../../../../../types';
 import VariantDeleteDialog from './delete-dialog';
 
 export function getColumns(
 	ids: string[],
 	updateProductVariants: (payload: { productVariantIds: string[] }) => Promise<any>,
 	refetch: () => void
-): ColumnDef<ICatalougeTypes.IProduct>[] {
+): ColumnDef<IProduct>[] {
 	return [
 		{
 			accessorKey: 'title',

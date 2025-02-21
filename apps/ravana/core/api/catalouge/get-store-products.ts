@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { IApiResponse } from '../../../types';
+import { IStoreProducts } from '../../../types/catalouge';
 import { HttpService } from '../../services';
 
 const getStoreProductList = async ({
@@ -18,10 +19,7 @@ const getStoreProductList = async ({
 	if (searchTerm && searchTerm.length > 2) {
 		url += `&searchTerm=${searchTerm}`;
 	}
-	const { data } =
-		await HttpService.get<IApiResponse<{ storeProducts: ICatalougeTypes.IStoreProducts[] }>>(
-			url
-		);
+	const { data } = await HttpService.get<IApiResponse<{ storeProducts: IStoreProducts[] }>>(url);
 
 	return {
 		data,

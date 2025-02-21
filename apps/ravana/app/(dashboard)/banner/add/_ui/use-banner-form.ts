@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 
 import { Routes } from '../../../../../core/primitives';
-import useCreateBanner from '../api/create-banner';
+import useCreateBanner from '../_api/create-banner';
 import { bannerSchema, IFormData } from './schema';
 
 export const useBannerForm = () => {

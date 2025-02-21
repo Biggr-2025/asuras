@@ -12,6 +12,7 @@ import {
 } from '@asuras/ui';
 import { Trash2 } from 'lucide-react';
 
+import { ISpecifications } from '../../../../../../../types';
 import { useRemoveProductAttributes } from './_api/remove-product-attributes';
 
 export default function DeleteDialog({
@@ -21,7 +22,7 @@ export default function DeleteDialog({
 	toggleForm,
 	name,
 }: {
-	attribute: ICatalougeTypes.ISpecifications;
+	attribute: ISpecifications;
 	id: string;
 	refetch: () => void;
 	toggleForm: (t: boolean) => void;
@@ -29,7 +30,7 @@ export default function DeleteDialog({
 }) {
 	const { mutateAsync: removeAttribute } = useRemoveProductAttributes(id);
 
-	const handleDelete = async (attribute: ICatalougeTypes.ISpecifications) => {
+	const handleDelete = async (attribute: ISpecifications) => {
 		const payload = {
 			attributeKey: name,
 			id: attribute._id,

@@ -1,10 +1,12 @@
 import { createContext, useContext } from 'react';
 import { PaginationState, RowSelectionState } from '@tanstack/react-table';
 
+import { IProduct } from '../../../../../types';
+
 export type IProductListingContextType = {
 	value: string;
 	handleSearchChange: (value: string) => void;
-	data: ICatalougeTypes.IProduct[];
+	data: IProduct[];
 	isFetching: boolean;
 	rowSelection: RowSelectionState;
 	setRowSelection: (state: RowSelectionState) => void;

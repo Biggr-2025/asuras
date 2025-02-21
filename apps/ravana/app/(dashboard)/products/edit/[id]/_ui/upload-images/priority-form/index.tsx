@@ -1,8 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Button, Form } from '@asuras/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
+import image from 'next/image';
 import { z } from 'zod';
 
+import { IProductImage } from '../../../../../../../../types';
 import { useUpdateImageAttributes } from '../_api/update-image-attributes';
 import ActiveField from './active-field';
 import PriorityField from './priority-field';
@@ -22,7 +24,7 @@ export default function PriorityUpdateForm({
 	id,
 	refetch,
 }: {
-	image: ICatalougeTypes.IProductImage;
+	image: IProductImage;
 	id: string;
 	refetch: () => void;
 }) {

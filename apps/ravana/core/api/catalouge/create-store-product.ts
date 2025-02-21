@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { IApiResponse } from '../../../types';
+import { IStoreProducts } from '../../../types/catalouge';
 import { HttpService } from '../../services';
 
 interface IPayload {
@@ -15,9 +16,10 @@ interface IPayload {
 
 const createStoreProduct = async (payload: IPayload) => {
 	try {
-		const { data } = await HttpService.post<
-			IApiResponse<{ storeProduct: ICatalougeTypes.IStoreProducts }>
-		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/store/addProduct`, payload);
+		const { data } = await HttpService.post<IApiResponse<{ storeProduct: IStoreProducts }>>(
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/store/addProduct`,
+			payload
+		);
 		return data;
 	} catch (err: any) {
 		throw new Error(err.response?.data?.msg || 'Network Error. Please try again.');

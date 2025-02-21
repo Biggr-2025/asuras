@@ -2,6 +2,7 @@
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { IApiResponse } from '../../../types';
+import { IProduct } from '../../../types/catalouge';
 import { HttpService } from '../../services';
 
 const getProductsList = async ({
@@ -22,9 +23,7 @@ const getProductsList = async ({
 	}
 
 	const { data } =
-		await HttpService.get<
-			IApiResponse<{ products: ICatalougeTypes.IProduct[]; totalCount: number }>
-		>(url);
+		await HttpService.get<IApiResponse<{ products: IProduct[]; totalCount: number }>>(url);
 
 	return data;
 };

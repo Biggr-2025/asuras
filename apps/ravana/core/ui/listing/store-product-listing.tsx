@@ -6,6 +6,7 @@ import { cn } from '@asuras/utils';
 import { PaginationState } from '@tanstack/react-table';
 import { Search, X } from 'lucide-react';
 
+import { IProduct } from '../../../types/catalouge';
 import { useGetStoresProductsList } from '../../api';
 import { useCreateStoreProduct } from '../../api/catalouge/create-store-product';
 import { ProductSearch } from '../product-search';
@@ -92,7 +93,7 @@ export const StoreProductsListingHeader = ({ className }: IStoreProductsListingH
 	const { value, handleSearchChange, storeId, refetch } = useStoreProductsListingContext();
 	const { mutateAsync: createStoreProduct } = useCreateStoreProduct();
 
-	const handleProduct = async (product: ICatalougeTypes.IProduct) => {
+	const handleProduct = async (product: IProduct) => {
 		const payload = {
 			storeId,
 			productId: product?.productId,

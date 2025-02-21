@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 
 import { ApiEndpoints } from '../../../../../../../../core/primitives';
 import { HttpService } from '../../../../../../../../core/services';
-import { IApiResponse } from '../../../../../../../../types';
+import { IApiResponse, IProduct } from '../../../../../../../../types';
 
 interface IPayload {
 	key: string;
@@ -16,9 +16,7 @@ interface IPayload {
 
 const updateProductAttribute = async (id: string, payload: IPayload) => {
 	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ product: ICatalougeTypes.IProduct }>
-		>(
+		const { data } = await HttpService.patch<IApiResponse<{ product: IProduct }>>(
 			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateProductAttribute}/${id}`,
 			payload
 		);
