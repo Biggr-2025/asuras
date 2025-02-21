@@ -6,9 +6,9 @@ import { PlusIcon } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import { IBannerDetails } from '../../../../../../../types';
-import { useCreateBannerGroup } from '../../_api/add-banner-group';
 import { useGetBannerById } from '../../_api/get-banner-by-id';
 import EditImageDetails from '../grouping-form';
+import { useCreateBannerGroup } from './_api/add-banner-group';
 import ImageItem from './image-item';
 import ProductTypes from './product-types';
 import { BannerImageSheet } from './sheet';

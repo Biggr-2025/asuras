@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
-import { useUpdateBannerGroupProducts } from '../../../_api/update-banner-group-products';
+import { useUpdateBannerGroupProducts } from '../_api/update-banner-group-products';
 import { tableColumns } from './columns';
 import { DraggableRow } from './draggable-row';
 import { IBannerGroup } from './index';

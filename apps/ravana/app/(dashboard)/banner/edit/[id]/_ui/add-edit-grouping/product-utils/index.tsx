@@ -14,7 +14,7 @@ import { arrayMove } from '@dnd-kit/sortable';
 
 import { UtilsSearch } from '../../../../../../../../core/ui';
 import { useGetBannerGroupDetails } from '../../../_api/get-banner-group-details';
-import { useUpdateBannerGroupProducts } from '../../../_api/update-banner-group-products';
+import { useUpdateBannerGroupProducts } from '../_api/update-banner-group-products';
 import { TableComponent } from './table';
 
 interface ProductUtilsProps {

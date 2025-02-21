@@ -3,8 +3,8 @@ import { useDropzone } from 'react-dropzone';
 
 import { createFormDataForImage } from '../../../../../../../../core/helpers';
 import { IBannerImage, IFileWithPreview } from '../../../../../../../../types';
-import { useCreateBannerGroup } from '../../../_api/add-banner-group';
-import { useUpdateBannerGroupImage } from '../../../_api/update-banner-group-image';
+import { useCreateBannerGroup } from '../_api/add-banner-group';
+import { useUpdateBannerGroupImage } from '../_api/update-banner-group-image';
 
 export function useBannerImage({
 	type,

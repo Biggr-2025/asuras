@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { IBannerImage } from '../../../../../../../../types';
-import { useDeleteBannerGroup } from '../../../_api/remove-banner-group';
+import { useDeleteBannerGroup } from '../_api/remove-banner-group';
 
 interface UseImageItemProps {
 	image: IBannerImage;
