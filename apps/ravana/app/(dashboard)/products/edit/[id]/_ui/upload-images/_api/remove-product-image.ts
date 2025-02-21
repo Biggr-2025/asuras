@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../../../core/services';
-import { IApiResponse } from '../../../../../../../../types';
+import { IApiResponse, IProduct } from '../../../../../../../../types';
 
 interface IPayload {
 	productImageId: string;
