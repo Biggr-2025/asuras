@@ -1,4 +1,6 @@
+import { getCustomError } from '@asuras/utils';
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../core/services';
@@ -18,7 +20,12 @@ const uploadStoreDocs = async (payload: FormData, id: string) => {
 		);
 		return data;
 	} catch (err) {
-		throw new Error('Network Error');
+		if (axios.isAxiosError(err)) {
+			const customError = getCustomError(err.response);
+			throw customError.customMessage;
+		} else {
+			throw 'An unexpected error occurred.';
+		}
 	}
 };
 

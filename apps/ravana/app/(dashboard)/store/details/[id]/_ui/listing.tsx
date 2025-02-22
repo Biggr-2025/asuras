@@ -2,12 +2,10 @@
 
 import { useParams } from 'next/navigation';
 
-import {
-	StoreProductsListing,
-	StoreProductsListingContent,
-	StoreProductsListingHeader,
-} from '../../../../../../core/ui';
-import ColumnsListing from './table';
+import { StoreProductsListing } from './store-products/listing/_ui';
+import { StoreProductsListingContent } from './store-products/listing/_ui/context';
+import { StoreProductsListingHeader } from './store-products/listing/_ui/header';
+import { StoreProductTable } from './store-products/table';
 
 export default function Listing() {
 	const params = useParams();
@@ -19,11 +17,11 @@ export default function Listing() {
 					apiKey="store/products/list"
 					showInactive={1}
 					storeId={params?.id as string}
-					className="shadow-card1 rounded-8 bg-white"
+					className="rounded-8 shadow-card1 bg-white"
 				>
 					<StoreProductsListingHeader />
 					<StoreProductsListingContent>
-						<ColumnsListing />
+						<StoreProductTable />
 					</StoreProductsListingContent>
 				</StoreProductsListing>
 			</div>

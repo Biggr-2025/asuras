@@ -11,8 +11,8 @@ import { CloudUpload } from 'lucide-react';
 import Link from 'next/link';
 
 import { createFormDataForDocument, createFormDataForImage } from '../../../../../../core/helpers';
-import { useGetStoreDocs } from '../api/get-store-docs';
-import { useUploadStoreDocs } from '../api/upload-store-docs';
+import { useGetStoreDocs } from '../_api/get-store-docs';
+import { useUploadStoreDocs } from '../_api/upload-store-docs';
 
 export default function StoreUpload({
 	storeType,
@@ -102,7 +102,7 @@ export default function StoreUpload({
 							)}
 						</div>
 					)}
-					<div className="rounded-12 border-grey-divider col-span-1 flex h-[300px] items-center justify-center  border">
+					<div className="rounded-12 border-grey-divider col-span-1 flex h-[300px] items-center justify-center border">
 						<div
 							className="flex size-full cursor-pointer flex-col items-center justify-center"
 							{...getRootProps()}

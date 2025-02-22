@@ -1,8 +1,10 @@
+import { getCustomError } from '@asuras/utils';
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../core/services';
-import { IApiResponse } from '../../../../../../types';
+import { IApiResponse, IStoreDetails } from '../../../../../../types';
 
 interface IPayload {
 	ownerName?: string;
@@ -14,13 +16,18 @@ interface IPayload {
 
 const updateBusinessDetails = async (payload: IPayload, id: string) => {
 	try {
-		const { data } = await HttpService.patch<IApiResponse<any>>(
+		const { data } = await HttpService.patch<IApiResponse<{ store: IStoreDetails }>>(
 			`${process.env.NEXT_PUBLIC_BASE_PATH}/store/businessDetail/${id}`,
 			payload
 		);
 		return data;
 	} catch (err) {
-		throw new Error('Network Error. Please try again.');
+		if (axios.isAxiosError(err)) {
+			const customError = getCustomError(err.response);
+			throw customError.customMessage;
+		} else {
+			throw 'An unexpected error occurred.';
+		}
 	}
 };
 

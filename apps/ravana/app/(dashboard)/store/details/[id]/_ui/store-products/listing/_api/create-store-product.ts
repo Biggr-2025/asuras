@@ -1,9 +1,10 @@
+import { getCustomError } from '@asuras/utils';
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { toast } from 'sonner';
 
-import { IApiResponse } from '../../../types';
-import { IStoreProducts } from '../../../types/catalouge';
-import { HttpService } from '../../services';
+import { HttpService } from '../../../../../../../../../core/services';
+import { IApiResponse, IStoreProducts } from '../../../../../../../../../types';
 
 interface IPayload {
 	storeId: string;
@@ -21,8 +22,13 @@ const createStoreProduct = async (payload: IPayload) => {
 			payload
 		);
 		return data;
-	} catch (err: any) {
-		throw new Error(err.response?.data?.msg || 'Network Error. Please try again.');
+	} catch (err) {
+		if (axios.isAxiosError(err)) {
+			const customError = getCustomError(err.response);
+			throw customError.customMessage;
+		} else {
+			throw 'An unexpected error occurred.';
+		}
 	}
 };
 
