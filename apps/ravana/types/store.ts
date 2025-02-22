@@ -21,6 +21,7 @@ export interface IStoreDetails {
 	entityName?: string;
 	panNo?: string;
 	gstNo?: string;
+	pincodes: string[];
 }
 export interface IStoreRegistration {
 	id: number;
