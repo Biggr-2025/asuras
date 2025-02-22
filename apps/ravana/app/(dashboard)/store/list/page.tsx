@@ -11,9 +11,11 @@ import {
 } from '@asuras/ui';
 import { PlusIcon } from 'lucide-react';
 
-import { StoreListing, StoreListingContent, StoreListingHeader } from '../../../../core/ui';
-import { AddEditStore } from './ui/form';
-import ColumnsListing from './ui/table';
+import { AddEditStore } from './_ui/form';
+import { StoreListing } from './_ui/listing';
+import { StoreListingContent } from './_ui/listing/content';
+import { StoreListingHeader } from './_ui/listing/header';
+import { StoreListingTable } from './_ui/table';
 
 export default function Page() {
 	const [show, setShow] = useState(false);
@@ -23,12 +25,11 @@ export default function Page() {
 			<div className="h-full">
 				<StoreListing
 					apiKey="stores/list"
-					showInactive={0}
-					className="shadow-card1 rounded-8 m-16 bg-white"
+					className="shadow-card1 rounded-8 m-16 bg-white p-12"
 				>
 					<StoreListingHeader />
 					<StoreListingContent>
-						<ColumnsListing />
+						<StoreListingTable />
 					</StoreListingContent>
 					<Sheet open={show} onOpenChange={setShow}>
 						<SheetTrigger className="bg-primary fixed bottom-12 right-12 flex size-[54px] cursor-pointer items-center justify-center gap-8 rounded-full px-12 py-8 text-white shadow-lg">
