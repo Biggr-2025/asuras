@@ -15,8 +15,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { IStoreDetails } from '../../../../../../types';
-import { useGetStoreDetails } from '../api/get-store-details';
-import { useUpdateBasicDetails } from '../api/update-basic-detail';
+import { useGetStoreDetails } from '../_api/get-store-details';
+import { useUpdateBasicDetails } from '../_api/update-basic-detail';
 
 const schema = z.object({
 	mobile: z
@@ -33,25 +33,27 @@ type IFormData = z.infer<typeof schema>;
 export default function BasicDetails({ id }: { id: string }) {
 	const { data, refetch, isPending } = useGetStoreDetails(id);
 	const details = data?.data?.store || ({} as IStoreDetails);
+
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			mobile: details?.mobile || '',
-			name: details?.name || '',
-			email: details?.email ?? undefined,
+			mobile: details.mobile || '',
+			name: details.name || '',
+			email: details.email ?? undefined,
 		},
 	});
+
 	const { mutateAsync: updateBasicDetails } = useUpdateBasicDetails(id);
 
 	useEffect(() => {
 		if (data?.data?.store) {
 			form.reset({
-				name: details?.name,
-				mobile: details?.mobile,
-				email: details?.email,
+				name: details.name,
+				mobile: details.mobile,
+				email: details.email,
 			});
 		}
-	}, [data?.data?.store, details?.email, details?.mobile, details?.name, form]);
+	}, [data?.data?.store, details.email, details.mobile, details.name, form]);
 
 	const onSubmit = async (values: IFormData) => {
 		const payload = {
@@ -74,57 +76,34 @@ export default function BasicDetails({ id }: { id: string }) {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="rounded-12 shadow-card1 grid max-w-[720px] grid-cols-2 gap-24 bg-white px-12 py-24"
 			>
-				<FormField
-					control={form.control}
-					name="name"
-					render={({ field, fieldState }) => (
-						<FormItem className="col-span-1">
-							<FormControl>
-								<FloatingInput
-									label="Name"
-									id="name"
-									isError={!!fieldState.error}
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="mobile"
-					render={({ field, fieldState }) => (
-						<FormItem className="col-span-1">
-							<FormControl>
-								<FloatingInput
-									label="Mobile Number"
-									id="mobile"
-									isError={!!fieldState.error}
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="email"
-					render={({ field, fieldState }) => (
-						<FormItem className="col-span-1">
-							<FormControl>
-								<FloatingInput
-									label="Email"
-									id="email"
-									isError={!!fieldState.error}
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+				{(
+					[
+						['name', 'Name', 'text'],
+						['mobile', 'Mobile Number', 'tel'],
+						['email', 'Email', 'email'],
+					] as const
+				).map(([fieldName, label, type]) => (
+					<FormField
+						key={fieldName}
+						control={form.control}
+						name={fieldName as keyof IFormData}
+						render={({ field, fieldState }) => (
+							<FormItem className="col-span-1">
+								<FormControl>
+									<FloatingInput
+										label={label}
+										id={fieldName}
+										type={type}
+										value={field.value}
+										onChange={field.onChange}
+										isError={!!fieldState.error}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+				))}
 				<Button className="col-span-2 max-w-[180px]">Submit</Button>
 			</form>
 		</Form>

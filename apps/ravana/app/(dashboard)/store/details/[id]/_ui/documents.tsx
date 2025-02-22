@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Accordion, Spinner } from '@asuras/ui';
 
 import { IStoreDetails } from '../../../../../../types';
-import { useGetStoreDetails } from '../api/get-store-details';
+import { useGetStoreDetails } from '../_api/get-store-details';
 import StoreUpload from './store-upload';
 
 export default function StoreDetails({ id }: { id: string }) {

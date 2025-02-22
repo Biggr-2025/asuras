@@ -4,19 +4,19 @@ import { Spinner, Tabs, TabsContent, TabsList, TabsTrigger } from '@asuras/ui';
 import dynamic from 'next/dynamic';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-const Documents = dynamic(() => import('./ui/documents'), {
+const Documents = dynamic(() => import('./_ui/documents'), {
 	loading: () => <Spinner />,
 });
 
-const Listing = dynamic(() => import('./ui/listing'), {
+const Listing = dynamic(() => import('./_ui/listing'), {
 	loading: () => <Spinner />,
 });
 
-const BusinessDetails = dynamic(() => import('./ui/business-details'), {
+const BusinessDetails = dynamic(() => import('./_ui/business-details'), {
 	loading: () => <Spinner />,
 });
 
-const BasicDetails = dynamic(() => import('./ui/basic-details'), {
+const BasicDetails = dynamic(() => import('./_ui/basic-details'), {
 	loading: () => <Spinner />,
 });
 
