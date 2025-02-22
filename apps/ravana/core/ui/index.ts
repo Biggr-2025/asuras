@@ -1,4 +1,3 @@
-export { EditStoreProduct } from './add-edit-store-product';
 export { AppMobile } from './app-mobile';
 export { Header } from './header';
 export { LoadingModal } from './loading-modal';
