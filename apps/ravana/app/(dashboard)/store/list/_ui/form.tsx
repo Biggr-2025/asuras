@@ -15,7 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { useStoreListingContext } from '../../../../../core/ui/listing/context';
-import { useCreateStore } from '../api/create-store';
+import { useCreateStore } from '../_api/create-store';
 
 const schema = z.object({
 	mobile: z
