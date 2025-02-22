@@ -1,6 +1,6 @@
 'use client';
 
-import { EditStoreProduct } from '../../../../../../../core/ui';
+import { EditStoreProduct } from './_ui';
 
 export default function Page() {
 	return (
