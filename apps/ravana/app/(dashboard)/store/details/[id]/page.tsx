@@ -20,6 +20,10 @@ const BasicDetails = dynamic(() => import('./_ui/basic-details'), {
 	loading: () => <Spinner />,
 });
 
+const Address = dynamic(() => import('./_ui/address'), {
+	loading: () => <Spinner />,
+});
+
 export default function Page() {
 	const router = useRouter();
 	const pathname = usePathname();
@@ -43,6 +47,9 @@ export default function Page() {
 				<TabsTrigger className="text-14 flex-1 py-12" value="documents">
 					Documents
 				</TabsTrigger>
+				<TabsTrigger className="text-14 flex-1 py-12" value="address">
+					Address
+				</TabsTrigger>
 				<TabsTrigger className="text-14 flex-1 py-12" value="products">
 					Products List
 				</TabsTrigger>
@@ -55,6 +62,9 @@ export default function Page() {
 			</TabsContent>
 			<TabsContent className="mt-0" value="documents">
 				<Documents id={params?.id as string} />
+			</TabsContent>
+			<TabsContent className="mt-0" value="address">
+				<Address />
 			</TabsContent>
 			<TabsContent className="mt-0" value="products">
 				<Listing />

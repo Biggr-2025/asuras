@@ -4,6 +4,7 @@ export interface IStoreDetails {
 	name: string;
 	active: boolean;
 	addressId: string | null;
+	address: IAddress;
 	gender: string;
 	role: string;
 	category: string;
@@ -21,6 +22,7 @@ export interface IStoreDetails {
 	entityName?: string;
 	panNo?: string;
 	gstNo?: string;
+	pincodes: string[];
 }
 export interface IStoreRegistration {
 	id: number;
@@ -36,3 +38,20 @@ export interface IStoreRegistration {
 }
 
 export type IStatus = 'PROCESSING' | 'SUCCESS' | 'FAILED' | 'HOLD';
+
+export interface IAddress {
+	_id: string;
+	userId: string;
+	pincode: string;
+	line1: string;
+	line2: string;
+	state: string;
+	district: string;
+	type: string;
+	lat: string;
+	lng: string;
+	active: boolean;
+	updatedBy: string;
+	createdAt: string;
+	updatedAt: string;
+}

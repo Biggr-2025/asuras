@@ -22,7 +22,6 @@ export function FormInput({
 			name={name}
 			render={({ field, fieldState }) => (
 				<FormItem>
-					<FormLabel>{label}</FormLabel>
 					<FormControl>
 						{isTextArea ? (
 							<FloatingTextArea

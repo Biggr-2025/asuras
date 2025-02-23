@@ -1,8 +1,8 @@
 import { keepPreviousData, QueryFunctionContext, useQuery } from '@tanstack/react-query';
 import qs from 'qs';
 
-import { IApiResponse } from '../../../types';
-import { HttpService } from '../../services';
+import { HttpService } from '../../../../core/services';
+import { IApiResponse } from '../../../../types';
 
 interface IProductUtilsParams {
 	apiKey: string;

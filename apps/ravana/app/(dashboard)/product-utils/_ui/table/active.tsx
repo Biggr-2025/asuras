@@ -11,16 +11,15 @@ import {
 } from '@asuras/ui';
 import { cn } from '@asuras/utils';
 
-import { useProductUtilsListContext } from '../../../../core/context/product-util';
-import { ICategory } from '../../../../types';
-import { useUpdateProductUtils } from '../_api/update-utils';
+import { ICategory } from '../../../../../types';
+import { useUpdateProductUtils } from '../../_api/update-utils';
+import { useProductUtilsListContext } from '../../_context';
 
 export default function Status({ row, type }: { row: ICategory; type: string }) {
 	const { mutateAsync: updateProductUtils } = useUpdateProductUtils(row.name);
 	const { refetch } = useProductUtilsListContext();
 
 	const handleUpdateProduct = async () => {
-		console.log(row);
 		const payload = {
 			name: row.name,
 			active: row.active ? false : true,

@@ -3,13 +3,17 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'sonner';
 
-import { HttpService } from '../../../../core/services';
-import { IApiResponse } from '../../../../types';
+import { HttpService } from '../../../../../../../../../core/services';
+import { IApiResponse, IStoreDetails } from '../../../../../../../../../types';
 
-const updateUtils = async (name: string, payload: FormData) => {
+interface IPayload {
+	pincodes: string[];
+}
+
+const updatePincodes = async (payload: IPayload, id: string) => {
 	try {
-		const { data } = await HttpService.patch<IApiResponse<{ product: object }>>(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/upload/${name}`,
+		const { data } = await HttpService.patch<IApiResponse<{ store: IStoreDetails }>>(
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/store/pincode/${id}`,
 			payload
 		);
 		return data;
@@ -23,12 +27,12 @@ const updateUtils = async (name: string, payload: FormData) => {
 	}
 };
 
-export function useUpdateUtils(name: string) {
+export function useUpdatePincodes(id: string) {
 	return useMutation({
-		mutationFn: (payload: FormData) => updateUtils(name, payload),
+		mutationFn: (payload: IPayload) => updatePincodes(payload, id),
 		onSuccess: (data) => {
 			if (data.status === 'SUCCESS') {
-				toast.success('banner updated successfully.');
+				toast.success('updated successfully.');
 			} else {
 				toast.error('Something went wrong. Please try again');
 			}

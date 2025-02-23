@@ -3,15 +3,25 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'sonner';
 
-import { HttpService } from '../../../../core/services';
-import { IApiResponse } from '../../../../types';
+import { HttpService } from '../../../../../../../../../core/services';
+import { IAddress, IApiResponse } from '../../../../../../../../../types';
 
-const updateProductUtils = async (name: string, payload: any) => {
-	const { apiKey, ...rest } = payload;
+interface IPayload {
+	pincode: string;
+	line1: string;
+	line2?: string;
+	type: string;
+	state: string;
+	district: string;
+	lat?: string;
+	lng?: string;
+}
+
+const createAddress = async (payload: IPayload, id: string) => {
 	try {
-		const { data } = await HttpService.patch<IApiResponse<any>>(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/productUtil/${apiKey}/${name}`,
-			rest
+		const { data } = await HttpService.post<IApiResponse<{ address: IAddress }>>(
+			`${process.env.NEXT_PUBLIC_BASE_PATH}/address/store/${id}`,
+			payload
 		);
 		return data;
 	} catch (err) {
@@ -24,9 +34,9 @@ const updateProductUtils = async (name: string, payload: any) => {
 	}
 };
 
-export function useUpdateProductUtils(name: string) {
+export function useCreateAddress(id: string) {
 	return useMutation({
-		mutationFn: (payload: any) => updateProductUtils(name, payload),
+		mutationFn: (payload: IPayload) => createAddress(payload, id),
 		onSuccess: (data) => {
 			if (data.status === 'SUCCESS') {
 				toast.success('updated successfully.');

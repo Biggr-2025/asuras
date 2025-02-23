@@ -1,14 +1,13 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
-import { Routes } from '../../../../core/primitives';
-import { ProductUtilsTable } from '../../../../core/ui/product-util/table';
-import { ICategory } from '../../../../types';
+import { Routes } from '../../../../../core/primitives';
+import { ICategory } from '../../../../../types';
 import Status from './active';
 
-export default function ColumnsListing({ type }: { type: string }) {
-	const columns: ColumnDef<ICategory>[] = useMemo(() => {
+export function useColumns(type: string): ColumnDef<ICategory>[] {
+	const columns = useMemo<ColumnDef<ICategory>[]>(() => {
 		const baseColumns: ColumnDef<ICategory>[] = [
 			{
 				accessorKey: 'index',
@@ -49,17 +48,15 @@ export default function ColumnsListing({ type }: { type: string }) {
 		baseColumns.push({
 			accessorKey: 'active',
 			header: 'Status',
-			cell: ({ row }) => {
-				return (
-					<div className="flex items-center gap-12">
-						<Status row={row.original} type={type} />
-					</div>
-				);
-			},
+			cell: ({ row }) => (
+				<div className="flex items-center gap-12">
+					<Status row={row.original} type={type} />
+				</div>
+			),
 		});
 
 		return baseColumns;
 	}, [type]);
 
-	return <ProductUtilsTable columns={columns} />;
+	return columns;
 }
