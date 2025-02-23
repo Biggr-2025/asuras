@@ -1,11 +1,9 @@
 'use client';
 
-import {
-	ProductUtilList,
-	ProductUtilListingContent,
-	ProductUtilListingHeader,
-} from '../../../../core/ui/product-util/listing';
-import ColumnsListing from '../_ui/columns';
+import { ProductUtilList } from '../_ui/listing';
+import { ProductUtilListingContent } from '../_ui/listing/content';
+import { ProductUtilListingHeader } from '../_ui/listing/header';
+import { ProductUtilsTable } from '../_ui/table';
 
 export default function Page() {
 	return (
@@ -13,7 +11,7 @@ export default function Page() {
 			<ProductUtilList apiKey="productUtil/list" type="BRAND" active={0} count={1}>
 				<ProductUtilListingHeader />
 				<ProductUtilListingContent>
-					<ColumnsListing type="BRAND" />
+					<ProductUtilsTable type="BRAND" />
 				</ProductUtilListingContent>
 			</ProductUtilList>
 		</div>
