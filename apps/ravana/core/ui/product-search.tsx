@@ -28,7 +28,7 @@ export function ProductSearch({
 	const [searchValue, onSearchValueChange] = useState('');
 	const [selectedValue, onSelectedValueChange] = useState<IProduct | null>(null);
 	const [open, setOpen] = useState(false);
-	const { data, isPending } = useGetProductsList(searchValue, 'products/search', 1, 0, 15, 0);
+	const { data, isPending } = useGetProductsList(searchValue, 'products/search', 1, 0, 30, 0);
 	const productsData = data?.data?.products || ([] as IProduct[]);
 
 	const onSelect = async (product: IProduct) => {
