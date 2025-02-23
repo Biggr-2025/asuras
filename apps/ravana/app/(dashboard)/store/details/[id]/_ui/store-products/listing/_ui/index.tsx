@@ -22,7 +22,7 @@ export function StoreProductsListing({
 	const [search, setSearchTerm] = useState('');
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
-		pageSize: 30,
+		pageSize: 15,
 	});
 	const { data, isFetching, refetch } = useGetStoresProductsList({
 		searchTerm: search,
