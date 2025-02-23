@@ -33,7 +33,7 @@ export function StoreListingTable() {
 
 	return (
 		<>
-			<StoreTable table={table} isFetching={isFetching} />
+			<StoreTable table={table} isFetching={isFetching} columns={columns} />
 			<Pagintaion
 				setPagination={setPagination}
 				pagination={pagination}

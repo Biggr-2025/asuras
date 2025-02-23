@@ -30,7 +30,7 @@ export const StoreProductTable = () => {
 	});
 	return (
 		<>
-			<ProductTable table={table} isFetching={isFetching} />
+			<ProductTable table={table} isFetching={isFetching} columns={columns} />
 			<Pagination
 				pagination={pagination}
 				setPagination={setPagination}
