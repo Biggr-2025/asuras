@@ -1,15 +1,16 @@
 import { Spinner, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@asuras/ui';
-import { flexRender, Table as TanstackTable } from '@tanstack/react-table';
+import { ColumnDef, flexRender, Table as TanstackTable } from '@tanstack/react-table';
 
 import { IStore } from '../../../../../../types';
-import columns from '../../../../product-utils/_ui/columns';
 
 export function StoreTable({
 	table,
 	isFetching,
+	columns,
 }: {
 	table: TanstackTable<IStore>;
 	isFetching: boolean;
+	columns: ColumnDef<IStore>[];
 }) {
 	return (
 		<Table className="relative">
