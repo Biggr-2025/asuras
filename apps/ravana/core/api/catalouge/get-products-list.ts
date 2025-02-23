@@ -12,7 +12,7 @@ const getProductsList = async ({
 
 	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/product/list?page=${page}&limit=${limit}`;
 
-	if (searchTerm && searchTerm.length > 2) {
+	if (searchTerm && searchTerm.length > 0) {
 		url += `&searchTerm=${searchTerm}`;
 	}
 	if (active === 1) {
