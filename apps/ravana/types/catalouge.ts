@@ -7,9 +7,18 @@ export interface IProduct {
 	mrp: number;
 	price: number;
 	gstInPercent: number;
-	brand: string;
-	category: string;
-	subcategory: string;
+	brand: {
+		brandId: string;
+		name: string;
+	};
+	category: {
+		categoryId: string;
+		name: string;
+	};
+	subCategory: {
+		subCategoryId: string;
+		name: string;
+	};
 	colour: string;
 	size: string;
 	tags: string[];
@@ -29,7 +38,10 @@ export interface IProduct {
 	packQuantity: number;
 	productVariantIds?: string[];
 	dimensions: ISpecifications[];
-	department: string;
+	department: {
+		departmentId: string;
+		name: string;
+	};
 	barCodeNo: string;
 }
 
@@ -84,10 +96,10 @@ export interface IBannerImage {
 	_id: string;
 	createdAt: string;
 	updatedAt: string;
-	brands: string[];
-	departments: string[];
-	categories: string[];
-	subCategories: string[];
+	brands: { name: string; _id: string }[];
+	departments: { name: string; _id: string }[];
+	categories: { name: string; _id: string }[];
+	subCategories: { name: string; _id: string }[];
 }
 export interface IStore {
 	mobile: string;

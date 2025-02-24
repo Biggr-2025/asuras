@@ -38,14 +38,28 @@ export function useProductForm(type: 'ADD' | 'EDIT') {
 				price: productData?.price?.toString() ?? '',
 				gstInPercent: productData?.gstInPercent?.toString() ?? '',
 				hsn: productData?.hsn ?? '',
-				brand: productData?.brand ?? '',
-				category: productData?.category ?? '',
-				subcategory: productData?.subcategory ?? '',
+				brandId: productData?.brand
+					? { _id: productData.brand.brandId, name: productData.brand.name }
+					: undefined,
+				categoryId: productData?.category
+					? { _id: productData.category.categoryId, name: productData.category.name }
+					: undefined,
+				subCategoryId: productData?.subCategory
+					? {
+							_id: productData.subCategory.subCategoryId,
+							name: productData.subCategory.name,
+						}
+					: undefined,
+				departmentId: productData?.department
+					? {
+							_id: productData.department.departmentId,
+							name: productData.department.name,
+						}
+					: undefined,
 				colour: productData?.colour ?? '',
 				size: productData?.size ?? '',
 				active: productData?.active?.toString() || 'true',
 				barCodeNo: productData?.barCodeNo ?? '',
-				department: productData?.department ?? '',
 			});
 		}
 	}, [form, params?.id, productData, type]);
@@ -59,8 +73,11 @@ export function useProductForm(type: 'ADD' | 'EDIT') {
 			price: Number(values.price),
 			gstInPercent: Number(values.gstInPercent),
 			active: values.active === 'true',
+			brandId: values?.brandId?._id,
+			categoryId: values?.categoryId?._id,
+			subCategoryId: values?.subCategoryId?._id,
+			departmentId: values?.departmentId?._id,
 		};
-
 		if (type === 'ADD') {
 			const response = await createProduct(payload);
 			if (response.status === 'SUCCESS') {

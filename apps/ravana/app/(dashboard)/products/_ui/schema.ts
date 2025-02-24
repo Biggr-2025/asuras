@@ -9,10 +9,34 @@ export const schema = z.object({
 	price: z.string().min(1, { message: 'Price is required' }),
 	gstInPercent: z.string().min(0).max(100, { message: 'GST must be between 0 and 100' }),
 	hsn: z.string().min(1, { message: 'HSN is required' }),
-	brand: z.string().min(1, { message: 'Brand is required' }),
-	category: z.string().min(1, { message: 'Category is required' }),
-	department: z.string().min(1, { message: 'Department is required' }),
-	subcategory: z.string().min(1, { message: 'Subcategory is required' }),
+	brandId: z
+		.object({
+			_id: z.string().min(1, { message: 'Brand ID is required' }),
+			name: z.string().min(1, { message: 'Brand Name is required' }),
+		})
+		.refine((val) => val._id && val.name, { message: 'Brand is required' }),
+
+	categoryId: z
+		.object({
+			_id: z.string().min(1, { message: 'Category ID is required' }),
+			name: z.string().min(1, { message: 'Category Name is required' }),
+		})
+		.refine((val) => val._id && val.name, { message: 'Category is required' }),
+
+	subCategoryId: z
+		.object({
+			_id: z.string().min(1, { message: 'Subcategory ID is required' }),
+			name: z.string().min(1, { message: 'Subcategory Name is required' }),
+		})
+		.refine((val) => val._id && val.name, { message: 'Subcategory is required' }),
+
+	departmentId: z
+		.object({
+			_id: z.string().min(1, { message: 'Department ID is required' }),
+			name: z.string().min(1, { message: 'Department Name is required' }),
+		})
+		.refine((val) => val._id && val.name, { message: 'Department is required' }),
+
 	colour: z.string().optional(),
 	size: z.string().optional(),
 	active: z.string().optional(),

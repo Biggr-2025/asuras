@@ -29,7 +29,7 @@ export const getCustomError = (response: any) => {
 	type StatusCode = 400 | 401 | 403 | 404 | 500;
 
 	const messages: Record<StatusCode, string> = {
-		400: response?.data?.error || 'Bad Request. Please check the input.',
+		400: response?.data?.msg || 'Bad Request. Please check the input.',
 		401: 'Unauthorized. Please log in again.',
 		403: 'Forbidden. You do not have access to this resource.',
 		404: 'Resource not found. Please check the endpoint.',

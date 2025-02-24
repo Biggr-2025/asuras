@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { toast } from 'sonner';
 
 import { logout } from '../helpers';
 import { store } from '../store';
@@ -43,22 +44,34 @@ HttpService.interceptors.response.use(
 		return response;
 	},
 	async (error: CustomAxiosError) => {
+		let errorMessage = 'An unexpected error occurred.';
+
 		if (error.response) {
-			// Handle specific error responses
-			if (
-				error.response.data?.statusCode === 401 &&
-				error.response.data?.msg === 'jwt expired'
-			) {
+			const { statusCode, msg } = error.response.data;
+
+			if (statusCode === 401 && msg === 'jwt expired') {
 				return ResetTokenAndReattemptRequest(error.response);
-			} else if (error.response.data?.msg === 'Inactive user!') {
+			}
+
+			if (msg === 'Inactive user!') {
 				logout();
 			}
-		} else if (error.request) {
-			// Handle errors that occur during the request but no response was received
-		} else {
-			// Handle other types of errors (e.g., configuration issues)
-		}
 
+			const errorMessages: Record<number, string> = {
+				400: msg || 'Bad request. Please check your input.',
+				401: 'Unauthorized. Please log in again.',
+				403: 'Forbidden. You do not have permission to access this resource.',
+				404: 'Resource not found. Please check the endpoint.',
+				500: 'Internal server error. Please try again later.',
+			};
+
+			errorMessage = errorMessages[statusCode] || msg || errorMessage;
+		} else if (error.request) {
+			errorMessage = 'Network error. Please check your internet connection.';
+		} else {
+			errorMessage = 'An error occurred. Please try again.';
+		}
+		toast.error(errorMessage);
 		return Promise.reject(error);
 	}
 );

@@ -24,10 +24,10 @@ interface ProductUtilsProps {
 }
 
 export interface IBannerGroup {
-	brands?: string[];
-	departments?: string[];
-	categories?: string[];
-	subCategories?: string[];
+	brands?: { name: string; _id: string }[];
+	departments?: { name: string; _id: string }[];
+	categories?: { name: string; _id: string }[];
+	subCategories?: { name: string; _id: string }[];
 }
 
 const typeToKeyMap: Record<ProductUtilsProps['type'], keyof IBannerGroup> = {
@@ -48,21 +48,22 @@ export default function ProductUtils({ bannerId, activeId, type }: ProductUtilsP
 	const [names, setNames] = useState<{ id: string; name: string }[]>([]);
 
 	useEffect(() => {
-		const items = (bannerGroup[groupKey] || []).map((name, index) => ({
-			id: String(index),
-			name,
+		const items = (bannerGroup[groupKey] || []).map((group) => ({
+			id: group._id,
+			name: group.name,
 		}));
 		setNames(items);
 	}, [bannerGroup, groupKey]);
 
-	const handleUtil = async (product: { name: string }) => {
-		const updatedItems = [...(bannerGroup[groupKey] || []), product.name];
-
+	const handleUtil = async (product: { name: string; _id: string }) => {
+		const updatedItems = [
+			...(bannerGroup[groupKey] || []),
+			{ name: product.name, _id: product._id },
+		];
 		const payload: Partial<IBannerGroup> & { bannerGroupId: string } = {
 			bannerGroupId: activeId,
 			[groupKey]: updatedItems,
 		};
-
 		const response = await updateGroupImageProducts(payload);
 		if (response.status === 'SUCCESS') refetch();
 	};
