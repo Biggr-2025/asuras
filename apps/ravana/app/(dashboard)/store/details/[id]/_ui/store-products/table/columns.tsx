@@ -34,7 +34,7 @@ export function getColumns(): ColumnDef<IStoreProducts>[] {
 			accessorKey: 'category',
 			header: 'Category',
 			cell: ({ row }) => {
-				const cat = row.original.product.category;
+				const cat = row.original.product?.category?.name;
 				return <div>{cat}</div>;
 			},
 		},

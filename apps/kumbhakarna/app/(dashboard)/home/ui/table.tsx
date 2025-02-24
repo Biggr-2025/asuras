@@ -27,7 +27,7 @@ export default function StoreProductsListTable() {
 				accessorKey: 'category',
 				header: 'Category',
 				cell: ({ row }) => {
-					const cat = row.original.product.category;
+					const cat = row.original.product.category.name;
 					return <div>{cat}</div>;
 				},
 			},
@@ -112,7 +112,7 @@ export default function StoreProductsListTable() {
 								// }
 							>
 								<PenIcon className="size-16 text-white" />
-								<span className="text-12  font-semibold text-white">
+								<span className="text-12 font-semibold text-white">
 									Update Product
 								</span>
 							</Link>

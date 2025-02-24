@@ -129,8 +129,22 @@ export interface IStoreProduct {
 	gstInPercent: number;
 	hsn: string;
 	mrp: number;
-	brand: string;
-	category: string;
+	brand: {
+		brandId: string;
+		name: string;
+	};
+	category: {
+		categoryId: string;
+		name: string;
+	};
+	subCategory: {
+		subCategoryId: string;
+		name: string;
+	};
+	department: {
+		departmentId: string;
+		name: string;
+	};
 	colour: string;
 	size: string;
 }
