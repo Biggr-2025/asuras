@@ -21,7 +21,7 @@ export function useColumns(type: string): ColumnDef<ICategory>[] {
 				cell: ({ row }) => (
 					<Link
 						className="hover:text-primary line-clamp-2 text-left hover:underline"
-						href={`${Routes.EditUtils}/${type}/${row.original.name}`}
+						href={`${Routes.EditUtils}/${type}/${row.original._id}`}
 					>
 						{row.original.name}
 					</Link>
