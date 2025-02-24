@@ -162,12 +162,12 @@ export default function ProductsList({
 			{
 				accessorKey: 'category',
 				header: 'Category',
-				cell: ({ row }) => <div>{row.getValue('category')}</div>,
+				cell: ({ row }) => <div>{row.original.category.name}</div>,
 			},
 			{
 				accessorKey: 'brand',
 				header: 'Brand',
-				cell: ({ row }) => <div>{row.getValue('brand')}</div>,
+				cell: ({ row }) => <div>{row.original.category.name}</div>,
 			},
 			{
 				id: 'select',

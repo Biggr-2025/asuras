@@ -16,9 +16,10 @@ interface IPayload {
 	price: number;
 	gstInPercent: number;
 	hsn: string;
-	brand: string;
-	category: string;
-	subcategory: string;
+	brandId: string;
+	categoryId: string;
+	subCategoryId: string;
+	departmentId: string;
 	colour?: string;
 	size?: string;
 	barCodeNo?: string;

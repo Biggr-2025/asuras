@@ -1,6 +1,4 @@
-import { getCustomError } from '@asuras/utils';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../../../../core/services';
@@ -8,25 +6,19 @@ import { IApiResponse, IBannerDetails } from '../../../../../../../../types';
 
 interface IPayload {
 	productIds?: string[];
-	brands?: string[];
+	brands?: { name: string; _id: string }[];
+	departments?: { name: string; _id: string }[];
+	categories?: { name: string; _id: string }[];
+	subCategories?: { name: string; _id: string }[];
 	bannerGroupId: string;
 }
 
 const updateBannerGroupProducts = async (payload: IPayload, id: string) => {
-	try {
-		const { data } = await HttpService.patch<IApiResponse<{ banner: IBannerDetails }>>(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/banner/updateGroupItems/${id}`,
-			payload
-		);
-		return data;
-	} catch (err) {
-		if (axios.isAxiosError(err)) {
-			const customError = getCustomError(err.response);
-			throw customError.customMessage;
-		} else {
-			throw 'An unexpected error occurred.';
-		}
-	}
+	const { data } = await HttpService.patch<IApiResponse<{ banner: IBannerDetails }>>(
+		`${process.env.NEXT_PUBLIC_BASE_PATH}/banner/updateGroupItems/${id}`,
+		payload
+	);
+	return data;
 };
 
 export function useUpdateBannerGroupProducts(id: string) {
@@ -38,9 +30,6 @@ export function useUpdateBannerGroupProducts(id: string) {
 			} else {
 				toast.error('Something went wrong. Please try again');
 			}
-		},
-		onError: (err) => {
-			toast.error(err.message);
 		},
 	});
 }

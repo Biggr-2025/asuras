@@ -26,19 +26,24 @@ export function ProductFormFields({
 			<FormInput name="size" label="Size" form={form} />
 			<FormInput name="barCodeNo" label="Barcode Number" form={form} />
 			<FormSelectDropdown
-				name="department"
+				name="departmentId"
 				label="Department"
 				paramKey="DEPARTMENT"
 				form={form}
 			/>
-			<FormSelectDropdown name="category" label="Category" form={form} paramKey="CATEGORY" />
 			<FormSelectDropdown
-				name="subcategory"
+				name="categoryId"
+				label="Category"
+				form={form}
+				paramKey="CATEGORY"
+			/>
+			<FormSelectDropdown
+				name="subCategoryId"
 				label="Sub Category"
 				form={form}
 				paramKey="SUBCATEGORY"
 			/>
-			<FormSelectDropdown name="brand" label="Brand" form={form} paramKey="BRAND" />
+			<FormSelectDropdown name="brandId" label="Brand" form={form} paramKey="BRAND" />
 			{type === 'EDIT' && <SelectInput form={form} />}
 		</>
 	);

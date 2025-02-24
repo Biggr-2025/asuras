@@ -30,10 +30,15 @@ interface FormSelectProps {
 
 export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectProps) {
 	const [value, setValue] = useState('');
-	const department = form.watch('department');
-	const category = form.watch('category');
+	const department = form.watch('departmentId');
+	const category = form.watch('categoryId');
 	const dependentField =
-		paramKey === 'CATEGORY' ? department : paramKey === 'SUBCATEGORY' ? category : undefined;
+		paramKey === 'CATEGORY'
+			? department?.name
+			: paramKey === 'SUBCATEGORY'
+				? category?.name
+				: undefined;
+
 	const { data, refetch } = useGetProductUtilsList({
 		apiKey: 'productUtil/list',
 		utilType: paramKey,
@@ -42,8 +47,8 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 		page: 0,
 		limit: 30,
 		count: 1,
-		department: paramKey === 'CATEGORY' ? department : undefined,
-		category: paramKey === 'SUBCATEGORY' ? category : undefined,
+		department: paramKey === 'CATEGORY' ? department?.name : undefined,
+		category: paramKey === 'SUBCATEGORY' ? category?.name : undefined,
 		enabled: paramKey === 'DEPARTMENT' || paramKey === 'BRAND' || !!dependentField,
 	});
 
@@ -59,6 +64,7 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 			name={name}
 			key={name}
 			render={({ field }) => {
+				const selectedOption = typeof field.value === 'object' ? field.value : null;
 				return (
 					<FormItem className="flex flex-col">
 						<FormLabel>{label}</FormLabel>
@@ -70,11 +76,13 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 										role="combobox"
 										className={cn(
 											'border-grey-light h-48 justify-between',
-											!field.value && 'text-muted-foreground'
+											!selectedOption && 'text-muted-foreground'
 										)}
 									>
 										<span className="text-14 font-normal">
-											{field.value ? field.value : 'Select an Option'}
+											{selectedOption
+												? selectedOption.name
+												: 'Select an Option'}
 										</span>
 										<ChevronsUpDown className="!size-16 opacity-50" />
 									</Button>
@@ -93,17 +101,18 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 										<CommandGroup>
 											{data?.data?.list?.map((option) => (
 												<CommandItem
+													key={option._id}
 													value={option.name}
-													key={option.name}
 													onSelect={() => {
-														form.setValue(name, option.name);
+														form.setValue(name, option);
 													}}
 												>
 													{option.name}
 													<Check
 														className={cn(
 															'ml-auto',
-															option.name === field.value
+															selectedOption &&
+																selectedOption._id === option._id
 																? 'opacity-100'
 																: 'opacity-0'
 														)}

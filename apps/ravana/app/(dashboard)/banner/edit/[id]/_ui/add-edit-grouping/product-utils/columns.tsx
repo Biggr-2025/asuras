@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable indent */
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -51,8 +53,7 @@ export const tableColumns = ({
 		header: '',
 		cell: ({ row }) => {
 			const handleDelete = async () => {
-				const data = tableData.map((table) => table.name);
-				const filterData = data.filter((name) => name !== row.original.name);
+				const filterData = tableData.filter((table) => table.id !== row.original.id);
 				const payload = {
 					[groupKey]: filterData,
 					bannerGroupId: activeId,

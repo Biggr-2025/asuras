@@ -14,8 +14,11 @@ interface IProductUtilsParams {
 	count: 0 | 1;
 	department?: string;
 	category?: string;
-	name?: string;
 	enabled?: boolean;
+	subCategoryId?: string;
+	categoryId?: string;
+	brandId?: string;
+	departmentId?: string;
 }
 
 const getProductUtilsList = async ({
@@ -45,7 +48,10 @@ export function useGetProductUtilsList({
 	count,
 	department,
 	category,
-	name,
+	subCategoryId,
+	categoryId,
+	brandId,
+	departmentId,
 	enabled = true,
 }: IProductUtilsParams) {
 	const queryParams: Partial<IProductUtilsParams> = {
@@ -57,7 +63,10 @@ export function useGetProductUtilsList({
 		limit,
 		department,
 		category,
-		name,
+		subCategoryId,
+		categoryId,
+		brandId,
+		departmentId,
 	};
 	return useQuery({
 		queryKey: [apiKey, queryParams],

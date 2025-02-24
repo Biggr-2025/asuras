@@ -22,8 +22,8 @@ export function getColumns(): ColumnDef<IProduct>[] {
 								{row.original.title}
 							</Link>
 						</TooltipTrigger>
-						<TooltipContent className="border-grey-light rounded-8 border bg-white">
-							<p className="text-black-1 text-14">{row.original.title}</p>
+						<TooltipContent className="rounded-8 border-grey-light border bg-white">
+							<p className="text-14 text-black-1">{row.original.title}</p>
 						</TooltipContent>
 					</Tooltip>
 				);
@@ -33,17 +33,17 @@ export function getColumns(): ColumnDef<IProduct>[] {
 		{
 			accessorKey: 'category',
 			header: 'Category',
-			cell: ({ row }) => <div>{row.getValue('category')}</div>,
+			cell: ({ row }) => <div>{row.original.category?.name}</div>,
 		},
 		{
 			accessorKey: 'subcategory',
 			header: 'Sub Category',
-			cell: ({ row }) => <div>{row.getValue('subcategory')}</div>,
+			cell: ({ row }) => <div>{row.original.subCategory?.name}</div>,
 		},
 		{
 			accessorKey: 'brand',
 			header: 'Brand',
-			cell: ({ row }) => <div>{row.getValue('brand')}</div>,
+			cell: ({ row }) => <div>{row.original.brand?.name}</div>,
 		},
 		{
 			accessorKey: 'active',
