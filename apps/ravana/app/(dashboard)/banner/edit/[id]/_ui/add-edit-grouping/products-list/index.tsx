@@ -167,7 +167,7 @@ export default function ProductsList({
 			{
 				accessorKey: 'brand',
 				header: 'Brand',
-				cell: ({ row }) => <div>{row.original.category.name}</div>,
+				cell: ({ row }) => <div>{row.original.brand.name}</div>,
 			},
 			{
 				id: 'select',
