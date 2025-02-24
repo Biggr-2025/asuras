@@ -38,7 +38,6 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 			: paramKey === 'SUBCATEGORY'
 				? category?.name
 				: undefined;
-
 	const { data, refetch } = useGetProductUtilsList({
 		apiKey: 'productUtil/list',
 		utilType: paramKey,
@@ -47,8 +46,8 @@ export function FormSelectDropdown({ name, label, form, paramKey }: FormSelectPr
 		page: 0,
 		limit: 30,
 		count: 1,
-		department: paramKey === 'CATEGORY' ? department?.name : undefined,
-		category: paramKey === 'SUBCATEGORY' ? category?.name : undefined,
+		departmentId: paramKey === 'CATEGORY' ? department?._id : undefined,
+		categoryId: paramKey === 'SUBCATEGORY' ? category?._id : undefined,
 		enabled: paramKey === 'DEPARTMENT' || paramKey === 'BRAND' || !!dependentField,
 	});
 

@@ -10,10 +10,10 @@ import { IApiResponse, IProduct } from '../../../../../types';
 interface IPayload {
 	title: string;
 	description?: string;
-	quantity: number;
+	// quantity: number;
 	packQuantity: number;
 	mrp: number;
-	price: number;
+	// price: number;
 	gstInPercent: number;
 	hsn: string;
 	brandId: string;

@@ -16,10 +16,10 @@ export function ProductFormFields({
 		<>
 			<FormInput name="title" label="Title" form={form} />
 			<FormInput name="description" label="Description" form={form} isTextArea />
-			<FormInput name="quantity" label="Quantity" form={form} type="number" />
+			{/* <FormInput name="quantity" label="Quantity" form={form} type="number" /> */}
 			<FormInput name="packQuantity" label="Pack Quantity" form={form} type="number" />
 			<FormInput name="mrp" label="MRP" form={form} type="number" />
-			<FormInput name="price" label="Price" form={form} type="number" />
+			{/* <FormInput name="price" label="Price" form={form} type="number" /> */}
 			<FormInput name="gstInPercent" label="GST in %" form={form} type="number" />
 			<FormInput name="hsn" label="HSN" form={form} />
 			<FormInput name="colour" label="Colour" form={form} />

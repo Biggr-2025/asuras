@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -32,10 +33,10 @@ export function useProductForm(type: 'ADD' | 'EDIT') {
 			form.reset({
 				title: productData?.title ?? '',
 				description: productData?.description ?? '',
-				quantity: productData?.quantity?.toString() ?? '',
+				// quantity: productData?.quantity?.toString() ?? '',
 				packQuantity: productData?.packQuantity?.toString() ?? '',
 				mrp: productData?.mrp?.toString() ?? '',
-				price: productData?.price?.toString() ?? '',
+				// price: productData?.price?.toString() ?? '',
 				gstInPercent: productData?.gstInPercent?.toString() ?? '',
 				hsn: productData?.hsn ?? '',
 				brandId: productData?.brand
@@ -67,10 +68,10 @@ export function useProductForm(type: 'ADD' | 'EDIT') {
 	const onSubmit = async (values: IFormData) => {
 		const payload = {
 			...values,
-			quantity: Number(values.quantity),
+			// quantity: Number(values.quantity),
 			packQuantity: Number(values.packQuantity),
 			mrp: Number(values.mrp),
-			price: Number(values.price),
+			// price: Number(values.price),
 			gstInPercent: Number(values.gstInPercent),
 			active: values.active === 'true',
 			brandId: values?.brandId?._id,
